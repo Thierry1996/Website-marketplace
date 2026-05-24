@@ -1,0 +1,460 @@
+// =============================================================================
+// Marketly — Multi-vendor marketplace platform
+// Prisma schema (PostgreSQL)
+// =============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// Enums
+// -----------------------------------------------------------------------------
+
+enum UserRole {
+  CUSTOMER
+  VENDOR
+  ADMIN
+}
+
+enum VendorStatus {
+  PENDING
+  APPROVED
+  SUSPENDED
+  REJECTED
+}
+
+enum ListingType {
+  PRODUCT
+  SERVICE
+  DIGITAL
+  SUBSCRIPTION
+  BOOKING
+}
+
+enum ListingStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FULFILLED
+  CANCELLED
+  REFUNDED
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum PaymentStatus {
+  REQUIRES_ACTION
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  INCOMPLETE
+}
+
+enum WebinarStatus {
+  SCHEDULED
+  LIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum PostStatus {
+  PUBLISHED
+  HIDDEN
+  REPORTED
+}
+
+// -----------------------------------------------------------------------------
+// Users & Vendors
+// -----------------------------------------------------------------------------
+
+model User {
+  id            String     @id @default(cuid())
+  clerkId       String?    @unique
+  email         String     @unique
+  name          String?
+  image         String?
+  role          UserRole   @default(CUSTOMER)
+  bio           String?
+  emailVerified DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  vendor          Vendor?
+  orders          Order[]
+  bookings        Booking[]
+  reviews         Review[]
+  payments        Payment[]
+  subscriptions   Subscription[]
+  sentMessages    Message[]      @relation("sender")
+  receivedMessages Message[]     @relation("recipient")
+  posts           CommunityPost[]
+  wishlist        Wishlist[]
+  webinarSignups  WebinarSignup[]
+
+  @@index([role])
+}
+
+model Vendor {
+  id          String       @id @default(cuid())
+  userId      String       @unique
+  slug        String       @unique
+  displayName String
+  tagline     String?
+  bio         String?
+  logoUrl     String?
+  coverUrl    String?
+  websiteUrl  String?
+  status      VendorStatus @default(PENDING)
+  commission  Float        @default(0.10) // 10% default platform fee
+  stripeAccountId String?  @unique
+  rating      Float        @default(0)
+  reviewCount Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listings Listing[]
+  services Service[]
+  products Product[]
+  webinars Webinar[]
+  reviews  Review[]
+
+  @@index([status])
+  @@index([slug])
+}
+
+// -----------------------------------------------------------------------------
+// Catalog: Categories, Listings, Services, Products
+// -----------------------------------------------------------------------------
+
+model Category {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name        String
+  description String?
+  icon        String?    // Lucide icon name or emoji
+  parentId    String?
+  order       Int        @default(0)
+
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryHierarchy")
+  listings Listing[]
+  services Service[]
+  products Product[]
+
+  @@index([parentId])
+}
+
+model Listing {
+  id           String        @id @default(cuid())
+  vendorId     String
+  categoryId   String?
+  type         ListingType
+  status       ListingStatus @default(DRAFT)
+  slug         String        @unique
+  title        String
+  subtitle     String?
+  description  String        @db.Text
+  priceCents   Int           @default(0)
+  currency     String        @default("USD")
+  thumbnailUrl String?
+  images       String[]
+  featured     Boolean       @default(false)
+  rating       Float         @default(0)
+  reviewCount  Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  vendor    Vendor     @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  category  Category?  @relation(fields: [categoryId], references: [id])
+  reviews   Review[]
+  wishlists Wishlist[]
+
+  @@index([vendorId])
+  @@index([categoryId])
+  @@index([status, featured])
+  @@index([type])
+}
+
+model Service {
+  id              String   @id @default(cuid())
+  vendorId        String
+  categoryId      String?
+  slug            String   @unique
+  title           String
+  description     String   @db.Text
+  durationMinutes Int      @default(60)
+  priceCents      Int
+  currency        String   @default("USD")
+  thumbnailUrl    String?
+  available       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  vendor   Vendor    @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  category Category? @relation(fields: [categoryId], references: [id])
+  bookings Booking[]
+
+  @@index([vendorId])
+  @@index([categoryId])
+}
+
+model Product {
+  id           String   @id @default(cuid())
+  vendorId     String
+  categoryId   String?
+  slug         String   @unique
+  title        String
+  description  String   @db.Text
+  priceCents   Int
+  currency     String   @default("USD")
+  stock        Int      @default(0)
+  thumbnailUrl String?
+  images       String[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  vendor   Vendor      @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  category Category?   @relation(fields: [categoryId], references: [id])
+  items    OrderItem[]
+
+  @@index([vendorId])
+}
+
+// -----------------------------------------------------------------------------
+// Commerce: Orders, Bookings, Payments, Subscriptions
+// -----------------------------------------------------------------------------
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  status          OrderStatus @default(PENDING)
+  subtotalCents   Int
+  taxCents        Int         @default(0)
+  totalCents      Int
+  currency        String      @default("USD")
+  stripeSessionId String?     @unique
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items    OrderItem[]
+  payment  Payment?
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id         String @id @default(cuid())
+  orderId    String
+  productId  String
+  quantity   Int    @default(1)
+  unitCents  Int
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Booking {
+  id        String        @id @default(cuid())
+  userId    String
+  serviceId String
+  status    BookingStatus @default(REQUESTED)
+  startAt   DateTime
+  endAt     DateTime
+  notes     String?       @db.Text
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  service Service @relation(fields: [serviceId], references: [id])
+
+  @@index([userId])
+  @@index([serviceId])
+  @@index([startAt])
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  userId          String
+  orderId         String?       @unique
+  subscriptionId  String?
+  stripePaymentId String?       @unique
+  amountCents     Int
+  currency        String        @default("USD")
+  status          PaymentStatus @default(PROCESSING)
+  receiptUrl      String?
+  createdAt       DateTime      @default(now())
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order        Order?        @relation(fields: [orderId], references: [id])
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String
+  stripeSubscriptionId String?            @unique
+  stripeCustomerId     String?
+  plan                 String             // "starter" | "pro" | "studio"
+  status               SubscriptionStatus @default(INCOMPLETE)
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean            @default(false)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments Payment[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+// -----------------------------------------------------------------------------
+// Engagement: Reviews, Wishlist, Messages
+// -----------------------------------------------------------------------------
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  listingId String?
+  vendorId  String?
+  rating    Int      // 1..5
+  title     String?
+  body      String?  @db.Text
+  createdAt DateTime @default(now())
+
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing? @relation(fields: [listingId], references: [id])
+  vendor  Vendor?  @relation(fields: [vendorId], references: [id])
+
+  @@index([listingId])
+  @@index([vendorId])
+}
+
+model Wishlist {
+  id        String   @id @default(cuid())
+  userId    String
+  listingId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, listingId])
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  senderId    String
+  recipientId String
+  body        String   @db.Text
+  attachmentUrls String[]
+  readAt      DateTime?
+  createdAt   DateTime @default(now())
+
+  sender    User @relation("sender",    fields: [senderId],    references: [id], onDelete: Cascade)
+  recipient User @relation("recipient", fields: [recipientId], references: [id], onDelete: Cascade)
+
+  @@index([senderId])
+  @@index([recipientId])
+  @@index([createdAt])
+}
+
+// -----------------------------------------------------------------------------
+// Content: Webinars, Community, Testimonials
+// -----------------------------------------------------------------------------
+
+model Webinar {
+  id          String        @id @default(cuid())
+  vendorId    String?
+  slug        String        @unique
+  title       String
+  description String        @db.Text
+  coverUrl    String?
+  status      WebinarStatus @default(SCHEDULED)
+  startAt     DateTime
+  durationMin Int           @default(60)
+  joinUrl     String?
+  replayUrl   String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  vendor  Vendor?         @relation(fields: [vendorId], references: [id])
+  signups WebinarSignup[]
+
+  @@index([startAt])
+}
+
+model WebinarSignup {
+  id        String   @id @default(cuid())
+  webinarId String
+  userId    String
+  createdAt DateTime @default(now())
+
+  webinar Webinar @relation(fields: [webinarId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId],    references: [id], onDelete: Cascade)
+
+  @@unique([webinarId, userId])
+}
+
+model CommunityPost {
+  id        String     @id @default(cuid())
+  authorId  String
+  title     String
+  body      String     @db.Text
+  tags      String[]
+  status    PostStatus @default(PUBLISHED)
+  likes     Int        @default(0)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([authorId])
+  @@index([createdAt])
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  role        String?
+  company     String?
+  avatarUrl   String?
+  body        String   @db.Text
+  rating      Int      @default(5)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
