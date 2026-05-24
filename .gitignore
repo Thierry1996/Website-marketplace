@@ -1,0 +1,9 @@
+# Claude local settings (machine-specific)
+.claude/settings.local.json
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db

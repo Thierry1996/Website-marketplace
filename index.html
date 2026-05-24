@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storefront Studio — Premium Template Marketplace</title>
+  <meta name="description" content="Premium ready-made ecommerce storefronts for entrepreneurs, freelancers, and small businesses." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0A0A0A; }
+    #root { min-height: 100vh; }
+    #loading {
+      position: fixed; inset: 0; background: #0A0A0A;
+      display: flex; align-items: center; justify-content: center;
+      font-family: sans-serif; color: #C9A84C; font-size: 1rem; letter-spacing: 0.1em;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">STOREFRONT STUDIO &nbsp;·&nbsp; Loading…</div>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script>
+    // Fetch StorefrontStudio.jsx, strip the ES import line, transform with Babel, then mount
+    fetch('./StorefrontStudio.jsx')
+      .then(function(r) { return r.text(); })
+      .then(function(src) {
+        // Remove the ES import statement — React is already global from the CDN
+        var cleaned = src
+          .replace(/^import\s+React.*?from\s+['"]react['"];?\s*\n?/m, '')
+          .replace(/export\s+default\s+function\s+App/, 'function App')
+          .replace(/export\s+default\s+App/, '');
+
+        // Add the render call at the bottom
+        cleaned += '\nReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));';
+
+        // Transpile JSX → JS
+        var result = Babel.transform(cleaned, { presets: ['react'] });
+
+        // Inject React hooks as local variables so the component finds them
+        var preamble = [
+          'var useState = React.useState;',
+          'var useEffect = React.useEffect;',
+          'var useRef = React.useRef;',
+        ].join('\n');
+
+        // Execute
+        // eslint-disable-next-line no-new-func
+        new Function(preamble + '\n' + result.code)();
+
+        // Hide loading screen
+        var loader = document.getElementById('loading');
+        if (loader) loader.remove();
+      })
+      .catch(function(err) {
+        document.getElementById('loading').textContent = 'Error loading app: ' + err.message;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
