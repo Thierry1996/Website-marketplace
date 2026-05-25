@@ -161,6 +161,24 @@ body {
 .marquee-track { animation: marquee 30s linear infinite; }
 .marquee-track:hover { animation-play-state: paused; }
 
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Accordion */
+@keyframes accordion-down {
+  from { height: 0; }
+  to   { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to   { height: 0; }
+}
+.data-\[state\=closed\]\:animate-accordion-up[data-state="closed"] { animation: accordion-up 0.2s ease-out; }
+.data-\[state\=open\]\:animate-accordion-down[data-state="open"]   { animation: accordion-down 0.2s ease-out; }
+
 /* Selection */
 ::selection { background: rgb(var(--brand) / 0.25); color: rgb(var(--foreground)); }
 
