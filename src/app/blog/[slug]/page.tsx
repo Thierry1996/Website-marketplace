@@ -9,17 +9,18 @@ import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { blogPosts } from "@/lib/content-data";
+import { getBlogPosts, getBlogPostBySlug } from "@/lib/queries";
 
 type Params = { slug: string };
 
 export async function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
+  const posts = await getBlogPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlug(slug);
   if (!post) return { title: "Post not found" };
   return { title: post.title, description: post.excerpt };
 }
@@ -30,10 +31,11 @@ function formatDate(iso: string) {
 
 export default async function BlogPostPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
-  const more = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const all = await getBlogPosts();
+  const more = all.filter((p) => p.slug !== post.slug).slice(0, 3);
   const initials = post.author.split(" ").map((w) => w[0]).join("").toUpperCase();
 
   return (

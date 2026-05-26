@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { webinars } from "@/lib/content-data";
+import { getWebinars } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Webinars",
@@ -63,7 +63,8 @@ function WebinarRow({ w }: { w: typeof webinars[number] }) {
   );
 }
 
-export default function WebinarsPage() {
+export default async function WebinarsPage() {
+  const webinars = await getWebinars();
   const upcoming = webinars.filter((w) => w.status === "upcoming");
   const replays  = webinars.filter((w) => w.status === "replay");
 

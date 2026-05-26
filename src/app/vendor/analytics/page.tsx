@@ -7,12 +7,16 @@ import { StatCard } from "@/components/charts/stat-card";
 import { BarMini } from "@/components/charts/bar-mini";
 import { Sparkline } from "@/components/charts/sparkline";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { vendorRevenue30d, vendorBookings30d } from "@/lib/dashboard-data";
+import { getVendorRevenue30d, getVendorBookings30d } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Analytics" };
 
-export default function AnalyticsPage() {
+export default async function AnalyticsPage() {
+  const [vendorRevenue30d, vendorBookings30d] = await Promise.all([
+    getVendorRevenue30d(),
+    getVendorBookings30d(),
+  ]);
   const revenue = vendorRevenue30d.reduce((s, p) => s + p.value, 0);
   const bookings = vendorBookings30d.reduce((s, p) => s + p.value, 0);
 

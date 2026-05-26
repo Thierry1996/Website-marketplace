@@ -7,12 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { adminVendors } from "@/lib/dashboard-data";
+import { getAdminVendors } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Vendors — admin" };
 
-export default function AdminVendorsPage() {
+export default async function AdminVendorsPage() {
+  const adminVendors = await getAdminVendors();
   return (
     <DashboardShell role="admin" title="Vendors">
       <DashboardPageHeader

@@ -7,7 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { sampleBookings, type BookingRecord } from "@/lib/dashboard-data";
+import { type BookingRecord } from "@/lib/dashboard-data";
+import { getMyBookings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Bookings" };
 
@@ -44,9 +45,10 @@ function BookingRow({ b }: { b: BookingRecord }) {
   );
 }
 
-export default function BookingsPage() {
-  const upcoming = sampleBookings.filter((b) => b.status === "upcoming");
-  const completed = sampleBookings.filter((b) => b.status === "completed");
+export default async function BookingsPage() {
+  const all = await getMyBookings();
+  const upcoming = all.filter((b) => b.status === "upcoming");
+  const completed = all.filter((b) => b.status === "completed");
 
   return (
     <DashboardShell role="user" title="Bookings">

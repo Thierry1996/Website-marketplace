@@ -6,12 +6,13 @@ import { DashboardShell, DashboardPageHeader } from "@/components/dashboard/dash
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { sampleOrders } from "@/lib/dashboard-data";
+import { getMyOrders } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Orders" };
 
-export default function OrdersPage() {
+export default async function OrdersPage() {
+  const sampleOrders = await getMyOrders();
   return (
     <DashboardShell role="user" title="Orders">
       <DashboardPageHeader

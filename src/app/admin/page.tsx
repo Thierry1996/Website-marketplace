@@ -9,12 +9,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { BarMini } from "@/components/charts/bar-mini";
-import { platformRevenue30d, adminListingFlags, adminVendors } from "@/lib/dashboard-data";
+import { getPlatformRevenue30d, getAdminFlags, getAdminVendors } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Admin overview" };
 
-export default function AdminOverviewPage() {
+export default async function AdminOverviewPage() {
+  const [platformRevenue30d, adminListingFlags, adminVendors] = await Promise.all([
+    getPlatformRevenue30d(),
+    getAdminFlags(),
+    getAdminVendors(),
+  ]);
+
   const totalGmv = platformRevenue30d.reduce((s, p) => s + p.value, 0);
   const trend7 = platformRevenue30d.slice(-7).map((p) => p.value);
   const pendingVendors = adminVendors.filter((v) => v.status === "Pending");

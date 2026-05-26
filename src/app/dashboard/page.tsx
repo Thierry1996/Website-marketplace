@@ -8,15 +8,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { sampleOrders, sampleBookings, sampleMessages } from "@/lib/dashboard-data";
+import { getMyOrders, getMyBookings, getMyMessages } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Your dashboard" };
 
-export default function UserDashboardPage() {
-  const upcoming = sampleBookings.filter((b) => b.status === "upcoming");
-  const recentOrders = sampleOrders.slice(0, 4);
-  const unreadCount = sampleMessages.reduce((s, m) => s + m.unread, 0);
+export default async function UserDashboardPage() {
+  const [orders, bookings, messages] = await Promise.all([
+    getMyOrders(),
+    getMyBookings(),
+    getMyMessages(),
+  ]);
+  const upcoming = bookings.filter((b) => b.status === "upcoming");
+  const recentOrders = orders.slice(0, 4);
+  const unreadCount = messages.reduce((s, m) => s + m.unread, 0);
 
   return (
     <DashboardShell role="user" title="Dashboard">
@@ -41,7 +46,7 @@ export default function UserDashboardPage() {
         />
         <StatCard
           label="Orders this year"
-          value={String(sampleOrders.length)}
+          value={String(orders.length)}
           delta={12.5}
           trend={[1, 2, 1, 3, 2, 4, 5]}
           icon={<ShoppingBag className="size-4" />}
@@ -114,7 +119,7 @@ export default function UserDashboardPage() {
             </Button>
           </div>
           <CardContent className="p-0 divide-y divide-border">
-            {sampleMessages.slice(0, 3).map((m) => (
+            {messages.slice(0, 3).map((m) => (
               <div key={m.id} className="flex items-start gap-3 p-4">
                 <Avatar className="size-9">
                   <AvatarFallback gradient={m.gradient}>{m.initials}</AvatarFallback>

@@ -6,12 +6,16 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StatCard } from "@/components/charts/stat-card";
-import { adminPayments, platformRevenue30d } from "@/lib/dashboard-data";
+import { getAdminPayments, getPlatformRevenue30d } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Payments — admin" };
 
-export default function AdminPaymentsPage() {
+export default async function AdminPaymentsPage() {
+  const [adminPayments, platformRevenue30d] = await Promise.all([
+    getAdminPayments(),
+    getPlatformRevenue30d(),
+  ]);
   const gross = adminPayments.reduce((s, p) => s + p.grossCents, 0);
   const fees = adminPayments.reduce((s, p) => s + p.feeCents, 0);
   const disputed = adminPayments.filter((p) => p.status === "Disputed").length;

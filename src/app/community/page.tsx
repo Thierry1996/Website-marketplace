@@ -10,14 +10,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { communityPosts, communityChannels } from "@/lib/content-data";
+import { communityChannels } from "@/lib/content-data";
+import { getCommunityPosts } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Community",
   description: "Forums, channels, and meetups for 28,000+ marketplace operators. Share what's working, get answers in hours.",
 };
 
-export default function CommunityPage() {
+export default async function CommunityPage() {
+  const communityPosts = await getCommunityPosts();
   return (
     <PageShell>
       <PageHeader

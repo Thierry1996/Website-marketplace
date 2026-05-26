@@ -6,15 +6,14 @@ import { DashboardShell, DashboardPageHeader } from "@/components/dashboard/dash
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { services } from "@/lib/services-data";
+import { getServices } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Services" };
 
-// Treat the first 3 services as belonging to this vendor (Studio Lumière).
-const owned = services.slice(0, 3);
-
-export default function VendorServicesPage() {
+export default async function VendorServicesPage() {
+  // Treat the first 3 services as belonging to this vendor (Studio Lumière).
+  const owned = (await getServices()).slice(0, 3);
   return (
     <DashboardShell role="vendor" title="Services">
       <DashboardPageHeader

@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/container";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { MarketplaceGrid } from "@/components/marketing/marketplace-grid";
 import { categories, getCategoryBySlug } from "@/lib/categories";
-import { marketplaceListings } from "@/lib/sample-data";
+import { getListings, getListingsByCategory } from "@/lib/queries";
 
 type Params = { slug: string };
 
@@ -32,8 +32,9 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
 
   // Filter listings to this category (fall back to all listings if no filter is set).
   const list = cat.listingFilter
-    ? marketplaceListings.filter((l) => l.category === cat.listingFilter)
-    : marketplaceListings;
+    ? await getListingsByCategory(cat.listingFilter)
+    : await getListings();
+  const fallback = list.length > 0 ? list : await getListings();
 
   return (
     <PageShell>
@@ -46,7 +47,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
       <Container className="py-12">
         <Breadcrumb items={[{ label: "Categories", href: "/categories" }, { label: cat.name }]} />
         <div className="mt-8">
-          <MarketplaceGrid listings={list.length > 0 ? list : marketplaceListings} defaultCategory={cat.listingFilter ?? "All"} />
+          <MarketplaceGrid listings={fallback} defaultCategory={cat.listingFilter ?? "All"} />
         </div>
       </Container>
     </PageShell>

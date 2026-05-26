@@ -7,12 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { vendorBookings } from "@/lib/dashboard-data";
+import type { VendorBookingRow } from "@/lib/dashboard-data";
+import { getVendorBookings } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Vendor bookings" };
 
-function BookingsTable({ rows }: { rows: typeof vendorBookings }) {
+function BookingsTable({ rows }: { rows: VendorBookingRow[] }) {
   if (rows.length === 0) {
     return (
       <Card className="p-10 text-center text-sm text-muted-foreground">
@@ -88,7 +89,8 @@ function BookingsTable({ rows }: { rows: typeof vendorBookings }) {
   );
 }
 
-export default function VendorBookingsPage() {
+export default async function VendorBookingsPage() {
+  const vendorBookings = await getVendorBookings();
   const requested = vendorBookings.filter((b) => b.status === "Requested");
   const confirmed = vendorBookings.filter((b) => b.status === "Confirmed");
   const completed = vendorBookings.filter((b) => b.status === "Completed");

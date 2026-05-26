@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { experts } from "@/lib/experts-data";
+import { getExperts } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   description: "Hire vetted Marketly experts for funnel strategy, brand, payments, ops, and paid acquisition. Average response time under 6 hours.",
 };
 
-export default function ExpertsPage() {
+export default async function ExpertsPage() {
+  const experts = await getExperts();
   return (
     <PageShell>
       <PageHeader

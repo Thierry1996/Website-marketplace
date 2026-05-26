@@ -4,14 +4,15 @@ import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/ui/container";
 import { ServiceCard } from "@/components/marketing/service-card";
-import { services } from "@/lib/services-data";
+import { getServices } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Services",
   description: "Book professionally-vetted services on Marketly — wellness, fitness, beauty, cleaning, consulting, and more.",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServices();
   return (
     <PageShell>
       <PageHeader

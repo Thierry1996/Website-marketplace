@@ -13,18 +13,19 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { ListingCard } from "@/components/marketing/listing-card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { marketplaceListings } from "@/lib/sample-data";
+import { getListings, getListingBySlug } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 type Params = { slug: string };
 
 export async function generateStaticParams() {
-  return marketplaceListings.map((l) => ({ slug: l.id }));
+  const listings = await getListings();
+  return listings.map((l) => ({ slug: l.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const listing = marketplaceListings.find((l) => l.id === slug);
+  const listing = await getListingBySlug(slug);
   if (!listing) return { title: "Listing not found" };
   return {
     title: listing.title,
@@ -34,10 +35,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function ListingDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const listing = marketplaceListings.find((l) => l.id === slug);
+  const listing = await getListingBySlug(slug);
   if (!listing) notFound();
 
-  const related = marketplaceListings.filter((l) => l.id !== listing.id && l.category === listing.category).slice(0, 3);
+  const all = await getListings();
+  const related = all.filter((l) => l.id !== listing.id && l.category === listing.category).slice(0, 3);
 
   return (
     <PageShell>

@@ -7,11 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { adminUsers } from "@/lib/dashboard-data";
+import { getAdminUsers } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Users — admin" };
 
-export default function AdminUsersPage() {
+export default async function AdminUsersPage() {
+  const adminUsers = await getAdminUsers();
   return (
     <DashboardShell role="admin" title="Users">
       <DashboardPageHeader

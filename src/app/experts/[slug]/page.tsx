@@ -11,25 +11,26 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { experts, getExpertBySlug } from "@/lib/experts-data";
+import { getExperts, getExpertBySlug } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 type Params = { slug: string };
 
 export async function generateStaticParams() {
+  const experts = await getExperts();
   return experts.map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const expert = getExpertBySlug(slug);
+  const expert = await getExpertBySlug(slug);
   if (!expert) return { title: "Expert not found" };
   return { title: `${expert.name} — ${expert.title}`, description: expert.bio };
 }
 
 export default async function ExpertPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const expert = getExpertBySlug(slug);
+  const expert = await getExpertBySlug(slug);
   if (!expert) notFound();
 
   return (

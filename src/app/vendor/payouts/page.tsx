@@ -7,12 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StatCard } from "@/components/charts/stat-card";
 import { Separator } from "@/components/ui/separator";
-import { vendorPayouts } from "@/lib/dashboard-data";
+import { getVendorPayouts } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Payouts" };
 
-export default function PayoutsPage() {
+export default async function PayoutsPage() {
+  const vendorPayouts = await getVendorPayouts();
   const paid     = vendorPayouts.filter((p) => p.status === "Paid").reduce((s, p) => s + p.amountCents, 0);
   const transit  = vendorPayouts.filter((p) => p.status === "In transit").reduce((s, p) => s + p.amountCents, 0);
   const pending  = vendorPayouts.filter((p) => p.status === "Pending").reduce((s, p) => s + p.amountCents, 0);

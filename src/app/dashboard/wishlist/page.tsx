@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 import { DashboardShell, DashboardPageHeader } from "@/components/dashboard/dashboard-shell";
 import { ListingCard } from "@/components/marketing/listing-card";
-import { marketplaceListings } from "@/lib/sample-data";
+import { getListings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Wishlist" };
 
-export default function WishlistPage() {
+export default async function WishlistPage() {
   // Pretend the user has saved the first 6 listings.
-  const saved = marketplaceListings.slice(0, 6);
+  const saved = (await getListings()).slice(0, 6);
 
   return (
     <DashboardShell role="user" title="Wishlist">

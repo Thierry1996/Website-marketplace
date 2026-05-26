@@ -7,12 +7,13 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { vendorListings } from "@/lib/dashboard-data";
+import { getVendorListings } from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Listings" };
 
-export default function VendorListingsPage() {
+export default async function VendorListingsPage() {
+  const vendorListings = await getVendorListings();
   return (
     <DashboardShell role="vendor" title="Listings">
       <DashboardPageHeader

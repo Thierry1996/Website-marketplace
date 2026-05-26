@@ -11,13 +11,20 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { BarMini } from "@/components/charts/bar-mini";
 import { Donut } from "@/components/charts/donut";
 import {
-  vendorRevenue30d, vendorBookings30d, vendorBookings, vendorListings,
-} from "@/lib/dashboard-data";
+  getVendorRevenue30d, getVendorBookings30d, getVendorBookings, getVendorListings,
+} from "@/lib/queries";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Vendor dashboard" };
 
-export default function VendorOverviewPage() {
+export default async function VendorOverviewPage() {
+  const [vendorRevenue30d, vendorBookings30d, vendorBookings, vendorListings] = await Promise.all([
+    getVendorRevenue30d(),
+    getVendorBookings30d(),
+    getVendorBookings(),
+    getVendorListings(),
+  ]);
+
   const totalRevenue = vendorRevenue30d.reduce((s, p) => s + p.value, 0);
   const totalBookings = vendorBookings30d.reduce((s, p) => s + p.value, 0);
 

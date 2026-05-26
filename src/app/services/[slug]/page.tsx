@@ -13,27 +13,29 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { ServiceBookingForm } from "@/components/marketing/service-booking-form";
 import { ServiceCard } from "@/components/marketing/service-card";
-import { services, getServiceBySlug } from "@/lib/services-data";
+import { getServices, getServiceBySlug } from "@/lib/queries";
 
 type Params = { slug: string };
 
 export async function generateStaticParams() {
+  const services = await getServices();
   return services.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const svc = getServiceBySlug(slug);
+  const svc = await getServiceBySlug(slug);
   if (!svc) return { title: "Service not found" };
   return { title: svc.title, description: svc.description };
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const svc = getServiceBySlug(slug);
+  const svc = await getServiceBySlug(slug);
   if (!svc) notFound();
 
-  const related = services.filter((s) => s.slug !== svc.slug && s.category === svc.category).slice(0, 3);
+  const all = await getServices();
+  const related = all.filter((s) => s.slug !== svc.slug && s.category === svc.category).slice(0, 3);
 
   return (
     <PageShell>

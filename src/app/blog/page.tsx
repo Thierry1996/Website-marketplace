@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/ui/container";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { blogPosts } from "@/lib/content-data";
+import { getBlogPosts } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -18,7 +18,8 @@ function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const blogPosts = await getBlogPosts();
   const [feature, ...rest] = blogPosts;
   return (
     <PageShell>

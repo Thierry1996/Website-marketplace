@@ -4,14 +4,15 @@ import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/ui/container";
 import { MarketplaceGrid } from "@/components/marketing/marketplace-grid";
-import { marketplaceListings } from "@/lib/sample-data";
+import { getListings } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Marketplace",
   description: "Browse 500+ vendor storefronts, templates, services, and booking platforms across 12+ industries.",
 };
 
-export default function MarketplacePage() {
+export default async function MarketplacePage() {
+  const listings = await getListings();
   return (
     <PageShell>
       <PageHeader
@@ -21,7 +22,7 @@ export default function MarketplacePage() {
       />
 
       <Container className="py-12">
-        <MarketplaceGrid listings={marketplaceListings} />
+        <MarketplaceGrid listings={listings} />
       </Container>
     </PageShell>
   );

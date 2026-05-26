@@ -6,12 +6,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { adminListingFlags } from "@/lib/dashboard-data";
-import { marketplaceListings } from "@/lib/sample-data";
+import { getAdminFlags, getListings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Listings — admin" };
 
-export default function AdminListingsPage() {
+export default async function AdminListingsPage() {
+  const [adminListingFlags, marketplaceListings] = await Promise.all([
+    getAdminFlags(),
+    getListings(),
+  ]);
   return (
     <DashboardShell role="admin" title="Listings">
       <DashboardPageHeader

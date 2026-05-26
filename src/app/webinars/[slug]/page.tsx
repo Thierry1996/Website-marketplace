@@ -10,24 +10,25 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { webinars, getWebinarBySlug } from "@/lib/content-data";
+import { getWebinars, getWebinarBySlug } from "@/lib/queries";
 
 type Params = { slug: string };
 
 export async function generateStaticParams() {
+  const webinars = await getWebinars();
   return webinars.map((w) => ({ slug: w.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const w = getWebinarBySlug(slug);
+  const w = await getWebinarBySlug(slug);
   if (!w) return { title: "Webinar not found" };
   return { title: w.title, description: w.description };
 }
 
 export default async function WebinarDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const w = getWebinarBySlug(slug);
+  const w = await getWebinarBySlug(slug);
   if (!w) notFound();
 
   const isReplay = w.status === "replay";
