@@ -86,9 +86,9 @@ export function Navbar() {
               <Link href="/sign-in">Sign in</Link>
             </Button>
 
-            <Button asChild variant="gradient" size="md" className="hidden sm:inline-flex">
+            <Button asChild variant="brand" size="md" className="hidden sm:inline-flex">
               <Link href="/sign-up">
-                Get started
+                Reach my customers
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
@@ -154,9 +154,9 @@ export function Navbar() {
                 </nav>
 
                 <div className="border-t border-border pt-6 space-y-3">
-                  <Button asChild variant="gradient" size="lg" className="w-full">
+                  <Button asChild variant="brand" size="lg" className="w-full">
                     <Link href="/sign-up" onClick={() => setMobileOpen(false)}>
-                      Get started free <ArrowRight className="size-4" />
+                      Reach my customers <ArrowRight className="size-4" />
                     </Link>
                   </Button>
                   <Button asChild variant="outline" size="lg" className="w-full">

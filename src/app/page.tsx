@@ -1,16 +1,15 @@
-import { Navbar }              from "@/components/layout/navbar";
-import { Footer }              from "@/components/layout/footer";
-import { Hero }                from "@/components/sections/hero";
-import { TrustedBy }           from "@/components/sections/trusted-by";
-import { Categories }          from "@/components/sections/categories";
-import { FeaturedVendors }     from "@/components/sections/featured-vendors";
-import { FeaturedServices }    from "@/components/sections/featured-services";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
-import { WebinarSection }      from "@/components/sections/webinar-section";
-import { CommunitySection }    from "@/components/sections/community-section";
-import { PricingPreview }      from "@/components/sections/pricing-preview";
-import { Newsletter }          from "@/components/sections/newsletter";
-import { FinalCta }            from "@/components/sections/final-cta";
+import { Navbar }               from "@/components/layout/navbar";
+import { Footer }               from "@/components/layout/footer";
+import { Hero }                 from "@/components/sections/hero";
+import { TrustedBy }            from "@/components/sections/trusted-by";
+import { Integrations }         from "@/components/sections/integrations";
+import { SubscriptionFeatures } from "@/components/sections/subscription-features";
+import { CategoryShowcase }     from "@/components/sections/category-showcase";
+import { VideoTestimonials }    from "@/components/sections/video-testimonials";
+import { PricingPreview }       from "@/components/sections/pricing-preview";
+import { TrustAndPay }          from "@/components/sections/trust-and-pay";
+import { Newsletter }           from "@/components/sections/newsletter";
+import { FinalCta }             from "@/components/sections/final-cta";
 
 export default function HomePage() {
   return (
@@ -19,13 +18,12 @@ export default function HomePage() {
       <main className="flex-1">
         <Hero />
         <TrustedBy />
-        <Categories />
-        <FeaturedVendors />
-        <FeaturedServices />
-        <TestimonialsSection />
-        <WebinarSection />
-        <CommunitySection />
+        <Integrations />
+        <SubscriptionFeatures />
+        <CategoryShowcase />
+        <VideoTestimonials />
         <PricingPreview />
+        <TrustAndPay />
         <Newsletter />
         <FinalCta />
       </main>

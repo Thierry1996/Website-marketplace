@@ -1,25 +1,30 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export function Logo({ className }: { className?: string }) {
+/**
+ * Reach wordmark — cursive ligature script in a signature warm→cool gradient,
+ * paired with a small "live" pulse dot to signal an always-on agency.
+ */
+export function Logo({ className, dark = false }: { className?: string; dark?: boolean }) {
   return (
     <Link
       href="/"
-      className={cn(
-        "group inline-flex items-center gap-2 font-display font-bold tracking-tight",
-        className
-      )}
-      aria-label="Marketly home"
+      className={cn("group inline-flex items-baseline gap-1", className)}
+      aria-label="Reach home"
     >
       <span
-        aria-hidden
-        className="relative grid h-8 w-8 place-items-center rounded-lg bg-[linear-gradient(135deg,rgb(var(--brand))_0%,rgb(var(--secondary))_60%,rgb(var(--accent))_100%)] text-white shadow-md ring-1 ring-black/5 transition-transform group-hover:scale-105"
+        className={cn(
+          "font-script text-3xl leading-none transition-transform group-hover:-rotate-2",
+          dark ? "text-white" : "gradient-text"
+        )}
+        style={{ paddingRight: 2 }}
       >
-        <span className="font-display text-base font-extrabold">M</span>
+        Reach
       </span>
-      <span className="text-lg leading-none">
-        Market<span className="gradient-text">ly</span>
-      </span>
+      <span
+        aria-hidden
+        className="mb-1 inline-block size-1.5 rounded-full bg-brand live-dot"
+      />
     </Link>
   );
 }

@@ -1,181 +1,171 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, PlayCircle, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Sparkles, Star, ChevronDown, TrendingUp, Users } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
-import { BookingWidget } from "@/components/marketing/booking-widget";
-import { stats } from "@/lib/sample-data";
+import { media } from "@/lib/media";
+
+const STATS = [
+  { value: "2.4M+", label: "customers reached" },
+  { value: "4.7x",  label: "avg return on ad spend" },
+  { value: "5",     label: "channels, one login" },
+  { value: "98%",   label: "client retention" },
+];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      {/* Background mesh */}
-      <div aria-hidden className="absolute inset-0 gradient-mesh" />
+    <section className="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
+      {/* Aurora background */}
+      <div aria-hidden className="absolute inset-0 aurora aurora-animated opacity-70" />
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-[520px] bg-gradient-to-b from-brand/5 via-transparent to-transparent"
-      />
-      {/* Grid pattern */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.025]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage:
-            "linear-gradient(rgb(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
+          backgroundImage: "radial-gradient(rgb(var(--foreground)) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
         }}
       />
 
       <Container className="relative">
-        <div className="grid gap-16 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+        <div className="grid gap-14 lg:grid-cols-[1.05fr_1fr] lg:items-center">
           {/* Left */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              <Badge variant="brand" className="px-3 py-1.5 text-[0.7rem]">
-                <Sparkles className="size-3" />
-                AI-era marketplace · Now in public beta
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+              <Badge variant="brand" className="px-3.5 py-1.5 text-[0.72rem] gap-2">
+                <span className="size-1.5 rounded-full bg-brand live-dot" />
+                Marketing agency · business growth, on autopilot
               </Badge>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.05 }}
-              className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-balance"
+              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05 }}
+              className="mt-6 font-display text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.2rem] font-extrabold tracking-tight text-balance"
             >
-              The all-in-one marketplace for{" "}
-              <span className="gradient-text">modern businesses.</span>
+              Create brand awareness, attract{" "}
+              <span className="gradient-text">new customers,</span>{" "}
+              and grow your profits.
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-muted-foreground"
+              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.1 }}
+              className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
             >
-              Sell products, book appointments, host webinars, hire experts, and grow a
-              community — all from one premium platform. Built for e-commerce dealers,
-              service pros, consultants, and creators.
+              <span className="font-script text-2xl text-foreground">Take your business to your customers</span> — in one click.
+              Reach runs your ads, storefront, and social channels from a single portal, powered by agentic-commerce AI.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.15 }}
-              className="mt-8 flex flex-wrap items-center gap-3"
+              initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.15 }}
+              className="mt-9 flex flex-wrap items-center gap-3"
             >
-              <Button asChild variant="gradient" size="xl">
+              <Button asChild variant="brand" size="xl" className="group">
                 <Link href="/sign-up">
-                  Start free <ArrowRight className="size-4" />
+                  Reach my customers
+                  <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="xl">
-                <Link href="/marketplace">
-                  <PlayCircle className="size-4" /> Watch the tour
-                </Link>
+                <Link href="#showcase"><Sparkles className="size-4" /> See our work</Link>
               </Button>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="mt-10 flex items-center gap-5 text-sm text-muted-foreground"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.25 }}
+              className="mt-9 flex items-center gap-4 text-sm"
             >
-              <div className="flex -space-x-2">
-                {[
-                  "linear-gradient(135deg,#10B981,#8B5CF6)",
-                  "linear-gradient(135deg,#F59E0B,#EF4444)",
-                  "linear-gradient(135deg,#3B82F6,#10B981)",
-                  "linear-gradient(135deg,#8B5CF6,#EC4899)",
-                ].map((bg, i) => (
-                  <span
-                    key={i}
-                    className="size-8 rounded-full ring-2 ring-background"
-                    style={{ background: bg }}
-                    aria-hidden
-                  />
+              <div className="flex -space-x-3">
+                {[media.avatars.monique, media.avatars.james, media.avatars.priya, media.avatars.jordan].map((src, i) => (
+                  <span key={i} className="relative size-9 overflow-hidden rounded-full ring-2 ring-background">
+                    <Image src={src} alt="" fill sizes="36px" className="object-cover" />
+                  </span>
                 ))}
               </div>
-              <div className="flex items-center gap-1">
-                <Star className="size-4 fill-accent-strong text-accent-strong" strokeWidth={0} />
-                <Star className="size-4 fill-accent-strong text-accent-strong" strokeWidth={0} />
-                <Star className="size-4 fill-accent-strong text-accent-strong" strokeWidth={0} />
-                <Star className="size-4 fill-accent-strong text-accent-strong" strokeWidth={0} />
-                <Star className="size-4 fill-accent-strong text-accent-strong" strokeWidth={0} />
-                <span className="ml-2 font-medium text-foreground">4.9</span>
-                <span>from 10,000+ vendors</span>
+              <div>
+                <div className="flex items-center gap-0.5 text-accent-strong">
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3.5 fill-current" strokeWidth={0} />)}
+                </div>
+                <div className="text-muted-foreground text-xs mt-0.5">
+                  <span className="font-semibold text-foreground">10,000+</span> businesses growing with Reach
+                </div>
               </div>
             </motion.div>
 
-            {/* Stats row */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-4 border-t border-border pt-8"
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-4 border-t border-border pt-7"
             >
-              {stats.map((s) => (
+              {STATS.map((s) => (
                 <div key={s.label}>
-                  <div className="font-display text-2xl sm:text-3xl font-bold tracking-tight">
-                    {s.value}
-                  </div>
+                  <div className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight gradient-text-warm">{s.value}</div>
                   <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
                 </div>
               ))}
             </motion.div>
           </div>
 
-          {/* Right — Booking widget + floating cards */}
+          {/* Right — live photo collage */}
           <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative h-[520px] sm:h-[560px]"
           >
-            <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-tr from-brand/20 via-secondary/15 to-accent/20 blur-2xl" />
-            <BookingWidget />
+            <div className="absolute right-0 top-4 w-[64%] animate-float">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border-4 border-surface-elevated shadow-2xl">
+                <Image src={media.hero.team} alt="Creative marketing team" fill sizes="400px" className="object-cover" priority />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 to-transparent p-4">
+                  <Badge variant="default" className="bg-white/90 text-foreground">Live campaign</Badge>
+                </div>
+              </div>
+            </div>
 
-            {/* Floating tag — revenue card */}
+            <div className="absolute left-0 top-0 w-[44%] animate-float" style={{ animationDelay: "1.2s" }}>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border-4 border-surface-elevated shadow-xl">
+                <Image src={media.hero.analytics} alt="Growth analytics" fill sizes="260px" className="object-cover" />
+              </div>
+            </div>
+
+            <div className="absolute left-2 bottom-0 w-[42%] animate-float" style={{ animationDelay: "0.6s" }}>
+              <div className="relative aspect-square overflow-hidden rounded-2xl border-4 border-surface-elevated shadow-xl">
+                <Image src={media.hero.phone} alt="Social channels" fill sizes="240px" className="object-cover" />
+              </div>
+            </div>
+
             <motion.div
-              initial={{ opacity: 0, x: 30, y: -20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="absolute -top-6 -left-6 hidden sm:flex items-center gap-3 rounded-xl border border-border bg-surface-elevated p-3 shadow-xl"
+              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 }}
+              className="absolute right-2 bottom-10 glass rounded-2xl p-3 shadow-xl flex items-center gap-3"
             >
-              <span className="grid size-9 place-items-center rounded-lg bg-brand text-brand-foreground">
-                <Sparkles className="size-4" />
+              <span className="grid size-9 place-items-center rounded-lg bg-lime/20 text-[rgb(var(--lime))]">
+                <TrendingUp className="size-4" />
               </span>
               <div>
-                <div className="text-xs text-muted-foreground">This month</div>
-                <div className="font-display font-bold text-sm">$12,480 earned</div>
+                <div className="text-xs text-muted-foreground">Revenue this week</div>
+                <div className="font-display font-bold text-sm">+$28,400</div>
               </div>
             </motion.div>
 
-            {/* Floating tag — bookings */}
             <motion.div
-              initial={{ opacity: 0, x: -20, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="absolute -bottom-6 -right-6 hidden sm:flex items-center gap-3 rounded-xl border border-border bg-surface-elevated p-3 shadow-xl"
+              initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.75 }}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 glass rounded-2xl p-3 shadow-xl flex items-center gap-3"
             >
               <span className="grid size-9 place-items-center rounded-lg bg-secondary/15 text-secondary">
-                <Star className="size-4 fill-current" strokeWidth={0} />
+                <Users className="size-4" />
               </span>
               <div>
-                <div className="text-xs text-muted-foreground">Today</div>
-                <div className="font-display font-bold text-sm">28 new bookings</div>
+                <div className="text-xs text-muted-foreground">New customers</div>
+                <div className="font-display font-bold text-sm">1,204 today</div>
               </div>
             </motion.div>
           </motion.div>
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Link href="#showcase" className="attention-bounce text-brand" aria-label="Scroll to see our work">
+            <ChevronDown className="size-7" />
+          </Link>
         </div>
       </Container>
     </section>
