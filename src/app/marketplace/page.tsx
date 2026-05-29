@@ -4,6 +4,7 @@ import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/ui/container";
 import { MarketplaceGrid } from "@/components/marketing/marketplace-grid";
+import { SubmissionsStrip } from "@/components/marketing/submissions-strip";
 import { getListings } from "@/lib/queries";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default async function MarketplacePage() {
       />
 
       <Container className="py-12">
+        <SubmissionsStrip />
         <MarketplaceGrid listings={listings} />
       </Container>
     </PageShell>

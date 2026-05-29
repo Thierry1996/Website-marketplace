@@ -38,7 +38,7 @@ export function Hero() {
             <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
               <Badge variant="brand" className="px-3.5 py-1.5 text-[0.72rem] gap-2">
                 <span className="size-1.5 rounded-full bg-brand live-dot" />
-                Marketing agency · business growth, on autopilot
+                Lead-gen + marketing agency · trusted by millions of small businesses
               </Badge>
             </motion.div>
 
@@ -56,7 +56,7 @@ export function Hero() {
               className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
             >
               <span className="font-script text-2xl text-foreground">Take your business to your customers</span> — in one click.
-              Reach runs your ads, storefront, and social channels from a single portal, powered by agentic-commerce AI.
+              Social ads, content, lead magnets, sales funnels, websites, and social management — one agency, one platform, predictable growth.
             </motion.p>
 
             <motion.div

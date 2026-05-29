@@ -2,8 +2,10 @@ import { Navbar }               from "@/components/layout/navbar";
 import { Footer }               from "@/components/layout/footer";
 import { Hero }                 from "@/components/sections/hero";
 import { TrustedBy }            from "@/components/sections/trusted-by";
+import { SolutionSuite }        from "@/components/sections/solution-suite";
 import { Integrations }         from "@/components/sections/integrations";
 import { SubscriptionFeatures } from "@/components/sections/subscription-features";
+import { LeadCaptureSection }   from "@/components/sections/lead-capture";
 import { HowItWorksStack }      from "@/components/sections/how-it-works-stack";
 import { CategoryShowcase }     from "@/components/sections/category-showcase";
 import { VideoStudio, PublishEverywhere } from "@/components/sections/video-studio";
@@ -21,6 +23,8 @@ export default function HomePage() {
       <main className="flex-1">
         <Hero />
         <TrustedBy />
+        <SolutionSuite />
+        <LeadCaptureSection />
         <Integrations />
 
         {/* Overlapping: features pull up over the dark integrations section */}

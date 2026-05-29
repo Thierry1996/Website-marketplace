@@ -2,6 +2,7 @@ import {
   LayoutDashboard, ShoppingBag, Calendar, Heart, MessageSquare,
   CreditCard, Settings, Package, Sparkles, BarChart3,
   Users, Building2, Banknote, ShieldCheck, FileText,
+  Store, Code2, Megaphone,
 } from "lucide-react";
 
 export type DashRole = "user" | "vendor" | "admin";
@@ -22,10 +23,17 @@ export const userDashNav: DashNavGroup[] = [
   {
     items: [
       { label: "Overview",      href: "/dashboard",              icon: LayoutDashboard },
+      { label: "Campaigns",     href: "/dashboard/campaigns",    icon: Megaphone },
       { label: "Orders",        href: "/dashboard/orders",       icon: ShoppingBag },
       { label: "Bookings",      href: "/dashboard/bookings",     icon: Calendar },
       { label: "Wishlist",      href: "/dashboard/wishlist",     icon: Heart },
       { label: "Messages",      href: "/dashboard/messages",     icon: MessageSquare, badge: "3" },
+    ],
+  },
+  {
+    heading: "Marketplace",
+    items: [
+      { label: "Browse marketplace", href: "/marketplace",       icon: Store, badge: "Add-on" },
     ],
   },
   {
@@ -47,8 +55,9 @@ export const vendorDashNav: DashNavGroup[] = [
   {
     heading: "Catalog",
     items: [
-      { label: "Listings",       href: "/vendor/listings",   icon: Package },
-      { label: "Services",       href: "/vendor/services",   icon: Sparkles },
+      { label: "Listings",       href: "/vendor/listings",     icon: Package },
+      { label: "Services",       href: "/vendor/services",     icon: Sparkles },
+      { label: "Code submissions",href: "/vendor/submissions", icon: Code2, badge: "New" },
     ],
   },
   {

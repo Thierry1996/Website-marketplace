@@ -25,6 +25,12 @@ const isPublicRoute = createRouteMatcher([
   "/sign-up(.*)",
   "/forgot-password(.*)",
   "/api/webhooks(.*)",
+  "/api/chat",
+  "/api/analyze-code",
+  "/preview(.*)",          // public live previews of approved submissions
+  "/start-trial",
+  "/sell",
+  "/checkout/preview",
   "/sitemap.xml",
   "/robots.txt",
 ]);

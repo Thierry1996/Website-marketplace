@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "Take your business to your customers in one click.",
   slogan: "Take Your Business to Your Customers — In One Click",
   description:
-    "Reach is a marketing agency and business growth platform. We create brand awareness, attract new customers, and grow your profits — with Meta, Instagram, WhatsApp, Pinterest & TikTok integrations, agentic-commerce AI, autopilot storefronts, and built-in payments.",
+    "Reach is a lead-generation and marketing agency trusted by millions of small and medium businesses. Social media advertising, content generation, lead magnets, sales funnels, websites, and social media management — one team, one platform, predictable growth.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://reach.com",
   keywords: [
     "marketing agency",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Calendar, ShoppingBag, Heart, MessageSquare, ArrowRight, Sparkles } from "lucide-react";
 
 import { DashboardShell, DashboardPageHeader } from "@/components/dashboard/dashboard-shell";
+import { CampaignStats } from "@/components/dashboard/campaign-stats";
 import { StatCard } from "@/components/charts/stat-card";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -67,7 +68,18 @@ export default async function UserDashboardPage() {
         />
       </div>
 
-      {/* Upcoming + recent activity */}
+      {/* Campaign stats — full-width */}
+      <CampaignStats
+        leadsThisMonth={428}
+        leadsTrend={[210, 245, 268, 295, 322, 360, 428]}
+        spendingCents={185000}
+        budgetCents={300000}
+        creditsCents={425000}
+        revenueThisMonthCents={2820000}
+        className="mb-6"
+      />
+
+      {/* Recent activity */}
       <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         {/* Upcoming bookings */}
         <Card>
@@ -184,11 +196,27 @@ export default async function UserDashboardPage() {
         </div>
       </Card>
 
-      {/* Discover cta */}
-      <Card className="mt-6 overflow-hidden bg-gradient-to-r from-brand/10 via-secondary/10 to-accent/10 border-brand/20">
+      {/* Add-on / Discover */}
+      <div className="mt-6 grid gap-4 md:grid-cols-2 mb-6">
+        <Card className="overflow-hidden bg-gradient-to-r from-brand/10 via-secondary/10 to-accent/10 border-brand/20">
+          <CardContent className="p-6 space-y-3">
+            <Badge variant="brand">Add-on bundle</Badge>
+            <div>
+              <div className="font-display font-bold text-lg">Add the Marketplace</div>
+              <div className="text-sm text-muted-foreground mt-1">Unlock 1,200+ websites, services & code projects from vetted vendors. $19/mo, billed with your plan.</div>
+            </div>
+            <Button asChild variant="brand" size="md">
+              <Link href="/marketplace">Browse marketplace <ArrowRight className="size-4" /></Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Vendor CTA (legacy) */}
+      <Card className="mt-6 overflow-hidden bg-gradient-to-r from-secondary/10 via-electric/10 to-brand/10 border-secondary/20">
         <CardContent className="p-6 flex flex-wrap items-center gap-4 justify-between">
           <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-lg bg-brand text-brand-foreground">
+            <span className="grid size-10 place-items-center rounded-lg bg-secondary text-white">
               <Sparkles className="size-5" />
             </span>
             <div>
