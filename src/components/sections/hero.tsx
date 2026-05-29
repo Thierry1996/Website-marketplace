@@ -44,7 +44,7 @@ export function Hero() {
 
             <motion.h1
               initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05 }}
-              className="mt-6 font-display text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.2rem] font-extrabold tracking-tight text-balance"
+              className="mt-6 font-display text-[2.5rem] leading-[1.05] sm:text-5xl lg:text-[3.7rem] font-bold tracking-[-0.02em] text-balance"
             >
               Create brand awareness, attract{" "}
               <span className="gradient-text">new customers,</span>{" "}

@@ -1,16 +1,15 @@
-import { Apple } from "lucide-react";
-
 import { fiatMethods, cryptoMethods, type PayMethod } from "@/lib/payments";
+import { BrandIcon } from "@/components/ui/brand-icon";
 import { cn } from "@/lib/utils";
 
 function MethodTile({ m }: { m: PayMethod }) {
   return (
     <div className="group flex items-center gap-3 rounded-xl border border-border bg-surface-elevated px-3.5 py-2.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
       <span
-        className="grid size-9 shrink-0 place-items-center rounded-lg text-white font-bold text-sm"
+        className="grid size-9 shrink-0 place-items-center rounded-lg text-white"
         style={{ background: m.color }}
       >
-        {m.key === "applepay" ? <Apple className="size-4 fill-white" /> : m.glyph}
+        <BrandIcon name={m.key} className="size-4.5" />
       </span>
       <div className="min-w-0">
         <div className="text-sm font-semibold leading-tight">{m.label}</div>

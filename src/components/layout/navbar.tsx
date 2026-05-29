@@ -50,8 +50,8 @@ export function Navbar() {
                     href={item.href}
                     className={cn(
                       "inline-flex items-center gap-1 rounded-md px-3 py-2",
-                      "font-display text-[0.8rem] font-semibold uppercase tracking-[0.12em]",
-                      "text-foreground/70 hover:text-brand transition-colors",
+                      "font-display text-[0.95rem] font-semibold tracking-tight",
+                      "text-foreground/75 hover:text-brand transition-colors",
                       openMenu === item.label && "text-brand"
                     )}
                   >

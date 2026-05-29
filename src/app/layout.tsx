@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Syne, Kaushan_Script } from "next/font/google";
+import { DM_Sans, Kaushan_Script } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 
@@ -8,16 +8,21 @@ import { siteConfig } from "@/lib/site";
 import { StructuredData } from "@/components/layout/structured-data";
 import { SupportChat } from "@/components/support/support-chat";
 
-const jakarta = Plus_Jakarta_Sans({
+// DM Sans for both body and display — clean, modern, creative-agency feel.
+// (Chosen over Poppins, which is friendlier but overused, and Roboto, which
+// reads more corporate than agency.) Variables keep their old names so the
+// globals.css @theme wiring stays intact.
+const dmSans = DM_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const syne = Syne({
+const dmSansDisplay = DM_Sans({
   variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -74,7 +79,7 @@ export default function RootLayout({
   const content = (
     <html
       lang="en"
-      className={`${jakarta.variable} ${syne.variable} ${kaushan.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${dmSansDisplay.variable} ${kaushan.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">

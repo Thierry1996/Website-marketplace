@@ -8,6 +8,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/container";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { BrandIcon } from "@/components/ui/brand-icon";
 import { integrations } from "@/lib/integrations";
 
 export function Integrations() {
@@ -38,10 +39,10 @@ export function Integrations() {
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-start justify-between">
                     <span
-                      className="grid size-12 place-items-center rounded-xl text-white text-xl font-bold shadow-lg transition-transform group-hover:scale-110 group-hover:-rotate-6"
+                      className="grid size-12 place-items-center rounded-xl text-white shadow-lg transition-transform group-hover:scale-110 group-hover:-rotate-6"
                       style={{ background: it.gradient }}
                     >
-                      {it.glyph}
+                      <BrandIcon name={it.key} className="size-6" />
                     </span>
                     <Badge
                       variant="outline"

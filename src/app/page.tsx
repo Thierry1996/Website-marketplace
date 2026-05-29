@@ -6,6 +6,7 @@ import { Integrations }         from "@/components/sections/integrations";
 import { SubscriptionFeatures } from "@/components/sections/subscription-features";
 import { HowItWorksStack }      from "@/components/sections/how-it-works-stack";
 import { CategoryShowcase }     from "@/components/sections/category-showcase";
+import { VideoStudio, PublishEverywhere } from "@/components/sections/video-studio";
 import { VideoTestimonials }    from "@/components/sections/video-testimonials";
 import { PricingPreview }       from "@/components/sections/pricing-preview";
 import { TrustAndPay }          from "@/components/sections/trust-and-pay";
@@ -28,6 +29,8 @@ export default function HomePage() {
         </div>
 
         <HowItWorksStack />
+        <VideoStudio />
+        <PublishEverywhere />
         <CategoryShowcase />
         <VideoTestimonials />
         <PricingPreview />

@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
 import { Logo } from "./logo";
+import { BrandIcon } from "@/components/ui/brand-icon";
 import { Container } from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -34,20 +34,21 @@ export function Footer() {
 
             <div className="flex items-center gap-2">
               {[
-                { href: siteConfig.links.twitter,   Icon: Twitter,   label: "Twitter" },
-                { href: siteConfig.links.instagram, Icon: Instagram, label: "Instagram" },
-                { href: siteConfig.links.linkedin,  Icon: Linkedin,  label: "LinkedIn" },
-                { href: siteConfig.links.github,    Icon: Github,    label: "GitHub" },
-              ].map(({ href, Icon, label }) => (
+                { href: siteConfig.links.twitter,   name: "x",         label: "X",         color: "#000000" },
+                { href: siteConfig.links.instagram, name: "instagram", label: "Instagram", color: "#E1306C" },
+                { href: siteConfig.links.linkedin,  name: "linkedin",  label: "LinkedIn",  color: "#0A66C2" },
+                { href: siteConfig.links.tiktok,    name: "tiktok",    label: "TikTok",    color: "#000000" },
+              ].map(({ href, name, label, color }) => (
                 <Link
                   key={label}
                   href={href}
                   aria-label={label}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="grid size-9 place-items-center rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+                  style={{ ["--hov" as string]: color }}
+                  className="grid size-9 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-foreground/30 hover:text-[var(--hov)]"
                 >
-                  <Icon className="size-4" />
+                  <BrandIcon name={name} className="size-4" />
                 </Link>
               ))}
             </div>
