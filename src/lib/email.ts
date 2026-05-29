@@ -10,7 +10,7 @@ import { Resend } from "resend";
 import { siteConfig } from "@/lib/site";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const FROM = process.env.EMAIL_FROM ?? `Marketly <hello@marketly.app>`;
+const FROM = process.env.EMAIL_FROM ?? `Reach <hello@reach.com>`;
 
 export interface SendEmailInput {
   to:      string | string[];
@@ -64,7 +64,7 @@ const SHELL = (title: string, body: string) => `
     <tr><td align="center" style="padding:32px 16px;">
       <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;">
         <tr><td style="padding:24px 32px;border-bottom:1px solid #E2E8F0;">
-          <div style="font-weight:800;font-size:18px;letter-spacing:0.04em;background:linear-gradient(135deg,#10B981,#8B5CF6);-webkit-background-clip:text;background-clip:text;color:transparent;">MARKETLY</div>
+          <div style="font-weight:800;font-size:20px;letter-spacing:0.02em;background:linear-gradient(135deg,#FF4D6D,#FF8A3D,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent;">Reach</div>
         </td></tr>
         <tr><td style="padding:32px;">
           <h1 style="margin:0 0 12px 0;font-size:22px;line-height:1.3;">${title}</h1>

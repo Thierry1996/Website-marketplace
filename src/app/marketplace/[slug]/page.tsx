@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!listing) return { title: "Listing not found" };
   return {
     title: listing.title,
-    description: `${listing.title} by ${listing.vendor} on Marketly. Rated ${listing.rating}/5 by ${listing.reviewCount} customers.`,
+    description: `${listing.title} by ${listing.vendor} on Reach. Rated ${listing.rating}/5 by ${listing.reviewCount} customers.`,
   };
 }
 

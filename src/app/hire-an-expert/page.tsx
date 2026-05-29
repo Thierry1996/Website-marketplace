@@ -7,7 +7,7 @@ import { ProjectBriefForm } from "@/components/marketing/project-brief-form";
 
 export const metadata: Metadata = {
   title: "Hire an Expert",
-  description: "Submit a project brief and we'll match you with 2-3 Marketly experts within 24 hours.",
+  description: "Submit a project brief and we'll match you with 2-3 Reach experts within 24 hours.",
 };
 
 export default function HireAnExpertPage() {

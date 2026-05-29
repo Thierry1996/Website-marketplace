@@ -43,7 +43,7 @@ export default function VendorSettingsPage() {
               <div>
                 <Label htmlFor="slug">Vendor URL</Label>
                 <div className="mt-1.5 flex items-center rounded-lg border border-border bg-surface-elevated overflow-hidden">
-                  <span className="px-3 py-2 text-sm text-muted-foreground border-r border-border">marketly.app/</span>
+                  <span className="px-3 py-2 text-sm text-muted-foreground border-r border-border">reach.com/</span>
                   <Input id="slug" defaultValue="studio-lumiere" className="border-0 rounded-none focus-visible:ring-0 shadow-none" />
                 </div>
               </div>

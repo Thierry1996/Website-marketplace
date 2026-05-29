@@ -25,7 +25,7 @@ export default function SettingsPage() {
           <CardContent className="p-6 space-y-5">
             <div>
               <h2 className="font-display text-lg font-semibold">Profile</h2>
-              <p className="text-sm text-muted-foreground mt-1">Public information shown across Marketly.</p>
+              <p className="text-sm text-muted-foreground mt-1">Public information shown across Reach.</p>
             </div>
 
             <Separator />
@@ -105,7 +105,7 @@ export default function SettingsPage() {
           <CardContent className="p-6 space-y-5">
             <div>
               <h2 className="font-display text-lg font-semibold">Notifications</h2>
-              <p className="text-sm text-muted-foreground mt-1">Choose which emails Marketly sends.</p>
+              <p className="text-sm text-muted-foreground mt-1">Choose which emails Reach sends.</p>
             </div>
             <Separator />
             <div className="space-y-3 text-sm">
@@ -114,7 +114,7 @@ export default function SettingsPage() {
                 ["Order and refund receipts",        true],
                 ["New messages from vendors",        true],
                 ["Weekly digest of new listings",    false],
-                ["Marketly product updates",         false],
+                ["Reach product updates",         false],
               ].map(([label, on]) => (
                 <label key={label as string} className="flex items-center justify-between gap-3 rounded-lg border border-border p-3">
                   <span>{label}</span>

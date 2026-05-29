@@ -70,40 +70,32 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
 
           <div className="relative my-10 aspect-[16/9] rounded-2xl overflow-hidden border border-border" style={{ background: post.gradient }} />
 
-          <div className="prose prose-lg max-w-none space-y-5 text-base sm:text-[1.06rem] leading-[1.75] text-foreground/85">
-            <p>
-              The marketplaces that grew the fastest in 2026 share a pattern: they bundled
-              software, audience, and trust into one product. Customers don't want to glue six
-              tools together to launch a service business — they want one place to start.
-            </p>
-            <h2 className="font-display text-2xl font-bold tracking-tight pt-4 text-foreground">The shape of a modern marketplace</h2>
-            <p>
-              Three pieces, all in one product: a storefront that converts on its own merits, a
-              booking + payment layer that doesn't break under load, and a discovery engine that
-              brings in the next customer without you spending a dime.
-            </p>
-            <p>
-              Skip any of the three and you're back to running a thinly-disguised hosting
-              business. Get all three right and the network effects do the work for you.
-            </p>
-            <h2 className="font-display text-2xl font-bold tracking-tight pt-4 text-foreground">What's working right now</h2>
-            <ul className="space-y-2">
-              <li>· Subscription-first pricing on services with a one-off "premium" tier.</li>
-              <li>· Hero pages that lead with social proof, not features.</li>
-              <li>· Onboarding that ships the first sale in under 48 hours.</li>
-              <li>· Stripe Connect Express — fast vendor KYC, escrow, daily payouts.</li>
-            </ul>
-            <p>
-              The teams hitting $10K MRR in 90 days are doing one thing differently: they treat
-              the marketplace listing itself as a conversion-tested landing page. They iterate
-              the page like a paid funnel.
-            </p>
-            <h2 className="font-display text-2xl font-bold tracking-tight pt-4 text-foreground">What to do this week</h2>
-            <p>
-              Audit your top listing. Replace one feature paragraph with one customer testimonial.
-              Move the price above the fold. Replace the booking widget's copy with the actual
-              outcome the customer is buying. Measure for seven days. Then do it again.
-            </p>
+          <div className="max-w-none space-y-5 text-base sm:text-[1.06rem] leading-[1.75] text-foreground/85">
+            {post.body.map((section, i) => (
+              <section key={i} className="space-y-4">
+                {section.heading && (
+                  <h2 className="font-display text-2xl font-bold tracking-tight pt-4 text-foreground">{section.heading}</h2>
+                )}
+                {section.paragraphs.map((p, j) => <p key={j}>{p}</p>)}
+                {section.bullets && (
+                  <ul className="space-y-2">
+                    {section.bullets.map((b, k) => (
+                      <li key={k} className="flex items-start gap-2">
+                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" /> {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+
+            <div className="mt-10 rounded-2xl border border-border bg-surface p-6 text-center">
+              <p className="font-display text-lg font-bold text-foreground">Ready to put this to work?</p>
+              <p className="mt-1 text-sm text-muted-foreground">Start a free 7-day trial — $0 today, cancel anytime.</p>
+              <Link href="/start-trial" className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition">
+                Start free <ArrowLeft className="size-4 rotate-180" />
+              </Link>
+            </div>
           </div>
         </Container>
 

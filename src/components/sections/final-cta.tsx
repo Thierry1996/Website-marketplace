@@ -34,7 +34,7 @@ export function FinalCta() {
             <span className="gradient-text">Built today.</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg text-background/70 leading-relaxed">
-            Join 10,000+ vendors selling products, booking services, hosting webinars, and growing communities on Marketly.
+            Join 10,000+ vendors selling products, booking services, hosting webinars, and growing communities on Reach.
             No credit card required to start.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">

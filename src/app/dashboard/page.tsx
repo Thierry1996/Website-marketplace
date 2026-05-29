@@ -27,7 +27,7 @@ export default async function UserDashboardPage() {
     <DashboardShell role="user" title="Dashboard">
       <DashboardPageHeader
         title="Welcome back, Jane"
-        description="Here's what's happening with your Marketly account."
+        description="Here's what's happening with your Reach account."
         actions={
           <Button asChild variant="gradient" size="md">
             <Link href="/marketplace">Browse marketplace <ArrowRight className="size-4" /></Link>

@@ -9,7 +9,7 @@ export function TestimonialsSection() {
         <SectionHeading
           eyebrow="Loved by 10,000+ businesses"
           title={<>Real vendors.{" "}<span className="gradient-text">Real growth.</span></>}
-          description="From solo creators to multi-location service businesses — Marketly powers the next chapter of ambitious teams."
+          description="From solo creators to multi-location service businesses — Reach powers the next chapter of ambitious teams."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">

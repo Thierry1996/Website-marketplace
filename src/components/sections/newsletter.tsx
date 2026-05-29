@@ -48,7 +48,7 @@ export function Newsletter() {
                 Free templates inside
               </span>
               <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold tracking-tight text-balance">
-                Get 3 premium templates when you join the Marketly newsletter
+                Get 3 premium templates when you join the Reach newsletter
               </h2>
               <p className="mt-3 text-base text-muted-foreground max-w-lg">
                 Weekly drops: best-selling templates, growth tactics from top vendors, and behind-the-scenes builds.

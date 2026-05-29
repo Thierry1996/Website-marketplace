@@ -143,7 +143,7 @@ export function ProjectBriefForm() {
             Send my brief <ArrowRight className="size-4" />
           </Button>
           <p className="text-center text-xs text-muted-foreground">
-            By submitting, you agree to Marketly's terms. We never share your details without your permission.
+            By submitting, you agree to Reach's terms. We never share your details without your permission.
           </p>
         </form>
       </CardContent>

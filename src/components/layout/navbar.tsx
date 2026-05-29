@@ -49,9 +49,10 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium",
-                      "text-foreground/80 hover:text-foreground transition-colors",
-                      openMenu === item.label && "text-foreground"
+                      "inline-flex items-center gap-1 rounded-md px-3 py-2",
+                      "font-display text-[0.8rem] font-semibold uppercase tracking-[0.12em]",
+                      "text-foreground/70 hover:text-brand transition-colors",
+                      openMenu === item.label && "text-brand"
                     )}
                   >
                     {item.label}
@@ -87,7 +88,7 @@ export function Navbar() {
             </Button>
 
             <Button asChild variant="brand" size="md" className="hidden sm:inline-flex">
-              <Link href="/sign-up">
+              <Link href="/start-trial">
                 Reach my customers
                 <ArrowRight className="size-4" />
               </Link>
@@ -155,8 +156,8 @@ export function Navbar() {
 
                 <div className="border-t border-border pt-6 space-y-3">
                   <Button asChild variant="brand" size="lg" className="w-full">
-                    <Link href="/sign-up" onClick={() => setMobileOpen(false)}>
-                      Reach my customers <ArrowRight className="size-4" />
+                    <Link href="/start-trial" onClick={() => setMobileOpen(false)}>
+                      Start free trial <ArrowRight className="size-4" />
                     </Link>
                   </Button>
                   <Button asChild variant="outline" size="lg" className="w-full">
@@ -176,7 +177,7 @@ export function Navbar() {
               </div>
 
               <div className="p-5 border-t border-border text-xs text-muted-foreground flex items-center gap-2">
-                <ShoppingBag className="size-3.5" /> Marketly © {new Date().getFullYear()}
+                <ShoppingBag className="size-3.5" /> Reach © {new Date().getFullYear()}
               </div>
             </motion.aside>
           </>

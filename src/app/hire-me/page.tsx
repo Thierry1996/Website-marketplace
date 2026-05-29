@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const services = [
   { title: "Marketplace launch sprint",     priceCents: 750000,  duration: "4 weeks",      description: "From blank repo to revenue-generating marketplace in 4 weeks. Includes vendor onboarding, payouts, listings, and booking." },
-  { title: "Storefront-in-a-week",          priceCents: 290000,  duration: "5 business days", description: "Tailor-made vendor storefront on Marketly. Brand, copy, layout, and Stripe integration — fully launched." },
+  { title: "Storefront-in-a-week",          priceCents: 290000,  duration: "5 business days", description: "Tailor-made vendor storefront on Reach. Brand, copy, layout, and Stripe integration — fully launched." },
   { title: "Conversion audit + roadmap",    priceCents: 95000,   duration: "1 week",       description: "Teardown of your existing storefront + 30-day prioritized roadmap with expected impact per change." },
 ];
 
@@ -52,7 +52,7 @@ export default function HireMePage() {
                 <div className="flex-1 min-w-0">
                   <Badge variant="brand"><Sparkles className="size-3" /> Available · Q3 2026</Badge>
                   <h1 className="mt-2 font-display text-3xl font-bold tracking-tight">Trey</h1>
-                  <div className="text-base text-muted-foreground">Founder · Marketly · Marketplace operator</div>
+                  <div className="text-base text-muted-foreground">Founder · Reach · Marketplace operator</div>
                 </div>
               </div>
 
@@ -66,7 +66,7 @@ export default function HireMePage() {
               <Separator />
 
               <p className="text-base leading-relaxed text-foreground/85 max-w-3xl">
-                I'm the operator and engineer behind Marketly. I've personally launched 40+ vendor storefronts, processed
+                I'm the operator and engineer behind Reach. I've personally launched 40+ vendor storefronts, processed
                 $4M+ in vendor GMV, and shipped the platform you're using right now. When my calendar allows, I take a
                 small number of direct client engagements per quarter.
               </p>

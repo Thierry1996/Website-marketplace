@@ -13,7 +13,7 @@ import { getWebinars } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Webinars",
-  description: "Live workshops and on-demand replays from top Marketly vendors. Funnel teardowns, growth tactics, and platform deep-dives.",
+  description: "Live workshops and on-demand replays from top Reach vendors. Funnel teardowns, growth tactics, and platform deep-dives.",
 };
 
 function formatDate(iso: string) {
@@ -73,7 +73,7 @@ export default async function WebinarsPage() {
       <PageHeader
         eyebrow="Webinars & education"
         title={<>Learn from the operators <span className="gradient-text">winning right now.</span></>}
-        description="Live workshops, on-demand replays, and a deep library of tactics from the vendors driving real growth on Marketly. Free for all members."
+        description="Live workshops, on-demand replays, and a deep library of tactics from the vendors driving real growth on Reach. Free for all members."
         actions={
           <Button asChild variant="gradient" size="lg">
             <Link href="/community">Join the community <ArrowRight className="size-4" /></Link>

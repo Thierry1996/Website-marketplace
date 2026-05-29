@@ -12,8 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
-  title: "Sell on Marketly",
-  description: "Open a vendor storefront on Marketly. Templates, bookings, payments, and a built-in audience — in one product.",
+  title: "Sell on Reach",
+  description: "Open a vendor storefront on Reach. Templates, bookings, payments, and a built-in audience — in one product.",
 };
 
 const benefits = [
@@ -26,7 +26,7 @@ const benefits = [
 ];
 
 const steps = [
-  { n: 1, title: "Sign up free",      desc: "Create your Marketly account in 60 seconds." },
+  { n: 1, title: "Sign up free",      desc: "Create your Reach account in 60 seconds." },
   { n: 2, title: "Set up storefront", desc: "Pick a template, drop in your brand, write a few lines of copy." },
   { n: 3, title: "Connect Stripe",    desc: "5-minute KYC. Bank account linked. Payouts every 2 business days." },
   { n: 4, title: "Go live & sell",    desc: "First buyers usually arrive within 48 hours via the marketplace search." },
@@ -37,7 +37,7 @@ export default function SellPage() {
     <PageShell>
       <PageHeader
         eyebrow="For vendors"
-        title={<>Sell on Marketly. <span className="gradient-text">Keep what you earn.</span></>}
+        title={<>Sell on Reach. <span className="gradient-text">Keep what you earn.</span></>}
         description="A complete platform for the modern operator — storefront, bookings, payments, community, and the audience to grow them. Built by operators."
         actions={
           <>
@@ -138,7 +138,7 @@ export default function SellPage() {
       <Section size="md" className="bg-foreground text-background">
         <Container>
           <div className="mx-auto max-w-2xl text-center space-y-5">
-            <h2 className="font-display text-3xl sm:text-4xl font-bold">Your next chapter starts on Marketly.</h2>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold">Your next chapter starts on Reach.</h2>
             <p className="text-background/70">14-day free trial. Cancel anytime, keep what you've built.</p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild variant="accent" size="lg">

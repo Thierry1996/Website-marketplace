@@ -100,7 +100,7 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" | "forgot" }) {
           <>Don't have an account? <Link href="/sign-up" className="font-semibold text-foreground hover:underline">Sign up free</Link></>
         )}
         {mode === "sign-up" && (
-          <>Already on Marketly? <Link href="/sign-in" className="font-semibold text-foreground hover:underline">Sign in</Link></>
+          <>Already on Reach? <Link href="/sign-in" className="font-semibold text-foreground hover:underline">Sign in</Link></>
         )}
         {mode === "forgot" && (
           <>Remembered it? <Link href="/sign-in" className="font-semibold text-foreground hover:underline">Back to sign in</Link></>

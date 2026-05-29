@@ -105,7 +105,7 @@ export default async function PayoutsPage() {
               Manage on Stripe <ExternalLink className="size-4" />
             </Button>
             <p className="text-xs text-muted-foreground">
-              All payouts are handled by Stripe Connect. Marketly never holds your funds.
+              All payouts are handled by Stripe Connect. Reach never holds your funds.
             </p>
           </CardContent>
         </Card>

@@ -110,7 +110,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                 </Avatar>
                 <div className="min-w-0 flex-1">
                   <div className="font-semibold">{svc.provider}</div>
-                  <div className="text-xs text-muted-foreground">Top-rated · 5+ years on Marketly</div>
+                  <div className="text-xs text-muted-foreground">Top-rated · 5+ years on Reach</div>
                 </div>
                 <Button asChild variant="outline" size="md">
                   <Link href="/marketplace">View profile <ArrowRight className="size-4" /></Link>

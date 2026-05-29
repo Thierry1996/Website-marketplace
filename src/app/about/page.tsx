@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "About us",
-  description: "Marketly is the all-in-one marketplace platform for modern operators. Our mission: make it 10x easier to launch and grow a real business online.",
+  description: "Reach is the all-in-one marketplace platform for modern operators. Our mission: make it 10x easier to launch and grow a real business online.",
 };
 
 const values = [
@@ -35,9 +35,9 @@ export default function AboutPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="About Marketly"
+        eyebrow="About Reach"
         title={<>We're building the marketplace platform <span className="gradient-text">operators wish existed.</span></>}
-        description="Marketly started from a question: why is it so hard to launch a real online business in 2026? Templates are bloated, payments are fragile, and discovery is broken. We're fixing all of it."
+        description="Reach started from a question: why is it so hard to launch a real online business in 2026? Templates are bloated, payments are fragile, and discovery is broken. We're fixing all of it."
       />
 
       <Section size="md">
@@ -46,7 +46,7 @@ export default function AboutPage() {
             <div className="space-y-4 text-foreground/85">
               <p>
                 Founded in 2023 by two operators who were tired of stitching together six SaaS tools just to start
-                selling, Marketly is now the trusted platform behind 10,000+ vendor storefronts across 15+ industries.
+                selling, Reach is now the trusted platform behind 10,000+ vendor storefronts across 15+ industries.
               </p>
               <p>
                 Our thesis is simple: templates, payments, bookings, community, and discovery should live in one product.

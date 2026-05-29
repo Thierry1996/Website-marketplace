@@ -11,7 +11,7 @@ import { getBlogPosts } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Operator playbooks, growth tactics, and engineering deep-dives from the Marketly team and top vendors.",
+  description: "Operator playbooks, growth tactics, and engineering deep-dives from the Reach team and top vendors.",
 };
 
 function formatDate(iso: string) {
@@ -24,7 +24,7 @@ export default async function BlogPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Marketly journal"
+        eyebrow="Reach journal"
         title={<>Operator playbooks. <span className="gradient-text">Real numbers.</span></>}
         description="What's working right now across the marketplace, in our team's words and from the vendors leading their industries."
       />

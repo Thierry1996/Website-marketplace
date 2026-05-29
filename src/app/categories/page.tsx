@@ -9,7 +9,7 @@ import { categories } from "@/lib/categories";
 
 export const metadata: Metadata = {
   title: "Categories",
-  description: "Browse Marketly by industry — 15+ categories spanning e-commerce, services, education, wellness, and more.",
+  description: "Browse Reach by industry — 15+ categories spanning e-commerce, services, education, wellness, and more.",
 };
 
 export default function CategoriesPage() {
@@ -18,7 +18,7 @@ export default function CategoriesPage() {
       <PageHeader
         eyebrow="Built for every industry"
         title={<>Categories that <span className="gradient-text">power real businesses.</span></>}
-        description="From fashion to fitness, food to freelance — Marketly templates and vendor storefronts are organized by the way real operators actually run their business."
+        description="From fashion to fitness, food to freelance — Reach templates and vendor storefronts are organized by the way real operators actually run their business."
       />
 
       <Container className="py-16">

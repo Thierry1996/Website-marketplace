@@ -49,7 +49,7 @@ export function AuthLayout({
         </div>
 
         <div className="relative text-xs text-background/50">
-          © {new Date().getFullYear()} Marketly. All rights reserved.
+          © {new Date().getFullYear()} Reach. All rights reserved.
         </div>
       </aside>
 

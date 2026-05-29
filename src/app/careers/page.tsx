@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Careers",
-  description: "Open roles at Marketly — engineering, design, and partnerships. Remote-first, async-first.",
+  description: "Open roles at Reach — engineering, design, and partnerships. Remote-first, async-first.",
 };
 
 const roles = [
@@ -27,7 +27,7 @@ export default function CareersPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Work at Marketly"
+        eyebrow="Work at Reach"
         title={<>Build the marketplace platform <span className="gradient-text">operators wish existed.</span></>}
         description="Remote-first, async-first, ship-every-week. We're 24 people in 9 countries hiring across engineering, design, and partnerships."
       />

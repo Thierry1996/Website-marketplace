@@ -35,9 +35,9 @@ const comparison: Array<{ feature: string; starter: boolean | string; pro: boole
 ];
 
 const faqs = [
-  { q: "Do I pay a platform commission?", a: "No platform commission. Marketly charges flat plans — you keep 100% of what you sell. Stripe's standard processing fees still apply." },
+  { q: "Do I pay a platform commission?", a: "No platform commission. Reach charges flat plans — you keep 100% of what you sell. Stripe's standard processing fees still apply." },
   { q: "Can I upgrade or downgrade later?", a: "Anytime. Upgrades are pro-rated and downgrades take effect at the end of your current billing period." },
-  { q: "What if I want a refund?", a: "30-day no-questions refund on all Marketly plans. Email support@marketly.app and we'll process it within 24 hours." },
+  { q: "What if I want a refund?", a: "30-day no-questions refund on all Reach plans. Email support@reach.com and we'll process it within 24 hours." },
   { q: "Is there a free trial?", a: "Starter doesn't require a card. Pro and Studio both come with a 14-day free trial. Cancel anytime during the trial with zero charge." },
 ];
 

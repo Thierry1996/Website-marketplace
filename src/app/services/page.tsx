@@ -8,7 +8,7 @@ import { getServices } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Book professionally-vetted services on Marketly — wellness, fitness, beauty, cleaning, consulting, and more.",
+  description: "Book professionally-vetted services on Reach — wellness, fitness, beauty, cleaning, consulting, and more.",
 };
 
 export default async function ServicesPage() {

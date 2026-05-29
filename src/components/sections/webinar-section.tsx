@@ -29,7 +29,7 @@ export function WebinarSection() {
             </h2>
             <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
               Live workshops, on-demand replays, and a library of templates and tactics from
-              the operators driving growth on Marketly. Free for all members.
+              the operators driving growth on Reach. Free for all members.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="gradient" size="lg">

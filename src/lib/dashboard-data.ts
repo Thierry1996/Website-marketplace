@@ -51,7 +51,7 @@ export const sampleMessages: MessageThread[] = [
   { id: "M1", partner: "Studio Lumière",  role: "Vendor",   preview: "Hey! Quick update — your booking confirmation just went out, looking forward to Friday.",                                                                  unread: 2, lastAt: "12m",  initials: "SL", gradient: "linear-gradient(135deg,#10B981,#8B5CF6)" },
   { id: "M2", partner: "PowerHouse Gym",  role: "Vendor",   preview: "Just wrapped your custom 4-week plan — let me know if you'd like to adjust anything before our next session.",                                            unread: 0, lastAt: "2h",   initials: "PG", gradient: "linear-gradient(135deg,#3B82F6,#10B981)" },
   { id: "M3", partner: "Lena Park",       role: "Expert",   preview: "Thanks for the brief! I'll have your funnel teardown back by end of day Thursday.",                                                                          unread: 1, lastAt: "1d",   initials: "LP", gradient: "linear-gradient(135deg,#EC4899,#F59E0B)" },
-  { id: "M4", partner: "Marketly Support",role: "Platform", preview: "Reminder: your subscription renews on June 1st. Update your payment method if needed.",                                                                      unread: 0, lastAt: "3d",   initials: "MS", gradient: "linear-gradient(135deg,#6B7280,#9CA3AF)" },
+  { id: "M4", partner: "Reach Support",role: "Platform", preview: "Reminder: your subscription renews on June 1st. Update your payment method if needed.",                                                                      unread: 0, lastAt: "3d",   initials: "MS", gradient: "linear-gradient(135deg,#6B7280,#9CA3AF)" },
 ];
 
 // -----------------------------------------------------------------------------
@@ -162,7 +162,7 @@ export interface AdminUserRow {
 }
 
 export const adminUsers: AdminUserRow[] = [
-  { id: "U-9821", name: "Lena Park",         email: "lena@marketly.app",        role: "Admin",    joinedAt: "2023-04-01", status: "Active",   initials: "LP", gradient: "linear-gradient(135deg,#10B981,#8B5CF6)" },
+  { id: "U-9821", name: "Lena Park",         email: "lena@reach.com",        role: "Admin",    joinedAt: "2023-04-01", status: "Active",   initials: "LP", gradient: "linear-gradient(135deg,#10B981,#8B5CF6)" },
   { id: "U-7401", name: "Studio Lumière",    email: "vendor@studio-lumiere.app",role: "Vendor",   joinedAt: "2024-03-12", status: "Active",   initials: "SL", gradient: "linear-gradient(135deg,#F472B6,#FBBF24)" },
   { id: "U-7398", name: "Aaron Woods",       email: "aaron@northwind.studio",   role: "Vendor",   joinedAt: "2025-02-04", status: "Active",   initials: "AW", gradient: "linear-gradient(135deg,#10B981,#8B5CF6)" },
   { id: "U-6010", name: "Jane Founder",      email: "jane@business.com",        role: "Customer", joinedAt: "2025-09-22", status: "Active",   initials: "JF", gradient: "linear-gradient(135deg,#3B82F6,#10B981)" },
@@ -203,7 +203,7 @@ export interface AdminListingFlag {
 
 export const adminListingFlags: AdminListingFlag[] = [
   { id: "F-1041", title: "Hair Pro Template",       vendor: "Shady Shop",      reason: "Misleading screenshots vs. delivered product",          reportedAt: "2026-05-25", reporter: "Customer #C-7621" },
-  { id: "F-1038", title: "Drop-ship Starter Kit",   vendor: "PrintFast Shop",  reason: "Copyrighted images without attribution",                reportedAt: "2026-05-24", reporter: "Marketly trust" },
+  { id: "F-1038", title: "Drop-ship Starter Kit",   vendor: "PrintFast Shop",  reason: "Copyrighted images without attribution",                reportedAt: "2026-05-24", reporter: "Reach trust" },
   { id: "F-1031", title: "Quick Funnel 2026",       vendor: "Funnel Forge",    reason: "Spam outreach in support thread",                       reportedAt: "2026-05-22", reporter: "Customer #C-3104" },
 ];
 

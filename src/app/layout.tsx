@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Bricolage_Grotesque, Dancing_Script } from "next/font/google";
+import { Plus_Jakarta_Sans, Syne, Kaushan_Script } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { StructuredData } from "@/components/layout/structured-data";
+import { SupportChat } from "@/components/support/support-chat";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -13,17 +14,17 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
+const syne = Syne({
   variable: "--font-bricolage",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const dancing = Dancing_Script({
+const kaushan = Kaushan_Script({
   variable: "--font-script",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -73,11 +74,12 @@ export default function RootLayout({
   const content = (
     <html
       lang="en"
-      className={`${jakarta.variable} ${bricolage.variable} ${dancing.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${syne.variable} ${kaushan.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
+        <SupportChat />
         <Toaster richColors position="top-right" />
         <StructuredData />
       </body>

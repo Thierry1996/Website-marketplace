@@ -83,7 +83,7 @@ export const testimonials: Testimonial[] = [
   {
     name: "Monique Tomas",
     role: "Owner, Studio Lumière",
-    body: "I launched my beauty salon booking site in one afternoon. Marketly's templates feel like they were custom-built — my clients constantly compliment the experience.",
+    body: "I launched my beauty salon booking site in one afternoon. Reach's templates feel like they were custom-built — my clients constantly compliment the experience.",
     rating: 5,
     avatarGradient: "linear-gradient(135deg,#10B981,#8B5CF6)",
   },
@@ -97,7 +97,7 @@ export const testimonials: Testimonial[] = [
   {
     name: "Priya Shah",
     role: "Freelance Brand Designer",
-    body: "I've used Marketly for six client projects this year. Quality is consistently world-class and customizing for each brand takes hours, not weeks.",
+    body: "I've used Reach for six client projects this year. Quality is consistently world-class and customizing for each brand takes hours, not weeks.",
     rating: 5,
     avatarGradient: "linear-gradient(135deg,#F59E0B,#EF4444)",
   },

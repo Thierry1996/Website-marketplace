@@ -64,7 +64,7 @@ export function Hero() {
               className="mt-9 flex flex-wrap items-center gap-3"
             >
               <Button asChild variant="brand" size="xl" className="group">
-                <Link href="/sign-up">
+                <Link href="/start-trial">
                   Reach my customers
                   <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
                 </Link>

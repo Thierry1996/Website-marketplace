@@ -70,7 +70,7 @@ export function CommunitySection() {
             <div className="space-y-3">
               {[
                 { name: "Aaron W.", time: "2h", title: "What's converting best on your booking pages?", reply: "Honestly, social proof above the fold made the biggest jump for me — 38% lift...", tags: ["bookings","conversion"], grad: "linear-gradient(135deg,#10B981,#8B5CF6)" },
-                { name: "Sasha M.", time: "5h", title: "Stripe Connect onboarding flow for first-time vendors?", reply: "Marketly's default onboarding handles 90% of it — only thing I added was a quick KYC reminder email...", tags: ["stripe","onboarding"], grad: "linear-gradient(135deg,#F59E0B,#EF4444)" },
+                { name: "Sasha M.", time: "5h", title: "Stripe Connect onboarding flow for first-time vendors?", reply: "Reach's default onboarding handles 90% of it — only thing I added was a quick KYC reminder email...", tags: ["stripe","onboarding"], grad: "linear-gradient(135deg,#F59E0B,#EF4444)" },
                 { name: "Devon K.", time: "1d", title: "Bundling subscriptions + one-off services = real talk", reply: "We doubled LTV by offering a discount for monthly plans that include 2 in-person services...", tags: ["pricing","subscriptions"], grad: "linear-gradient(135deg,#3B82F6,#10B981)" },
               ].map((p, i) => (
                 <Card key={i} className="hover:shadow-md transition">

@@ -6,7 +6,7 @@ import { ClerkSignUp } from "@/components/layout/clerk-auth";
 
 export const metadata: Metadata = {
   title: "Sign up",
-  description: "Create your free Marketly account.",
+  description: "Create your free Reach account.",
 };
 
 export default function SignUpPage() {

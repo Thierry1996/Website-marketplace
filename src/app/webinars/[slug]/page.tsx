@@ -92,7 +92,7 @@ export default async function WebinarDetailPage({ params }: { params: Promise<Pa
                 <div>
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">{isReplay ? "Replay" : "Live session"}</div>
                   <div className="font-display text-2xl font-bold mt-1">Free</div>
-                  <div className="mt-1 text-xs text-muted-foreground">For all Marketly members</div>
+                  <div className="mt-1 text-xs text-muted-foreground">For all Reach members</div>
                 </div>
 
                 <Separator />

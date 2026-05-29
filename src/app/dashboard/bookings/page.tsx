@@ -54,7 +54,7 @@ export default async function BookingsPage() {
     <DashboardShell role="user" title="Bookings">
       <DashboardPageHeader
         title="Bookings"
-        description="Appointments with services and experts on Marketly."
+        description="Appointments with services and experts on Reach."
         actions={
           <Button asChild variant="gradient" size="md">
             <Link href="/services">Find a service <ArrowRight className="size-4" /></Link>

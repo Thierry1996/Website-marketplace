@@ -5,7 +5,7 @@ import { AuthForm } from "@/components/layout/auth-form";
 
 export const metadata: Metadata = {
   title: "Reset password",
-  description: "Recover access to your Marketly account.",
+  description: "Recover access to your Reach account.",
 };
 
 export default function ForgotPasswordPage() {

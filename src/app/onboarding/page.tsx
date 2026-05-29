@@ -36,7 +36,7 @@ export default function OnboardingPage() {
   function back() { setStep((s) => Math.max(s - 1, 0)); }
 
   function finish() {
-    toast.success("You're all set. Welcome to Marketly!");
+    toast.success("You're all set. Welcome to Reach!");
     setStep(STEPS.length - 1);
   }
 
@@ -75,7 +75,7 @@ export default function OnboardingPage() {
             {step === 0 && (
               <>
                 <Badge variant="brand"><Sparkles className="size-3" /> Welcome aboard</Badge>
-                <h1 className="font-display text-2xl sm:text-3xl font-bold">Let's get Marketly set up for you</h1>
+                <h1 className="font-display text-2xl sm:text-3xl font-bold">Let's get Reach set up for you</h1>
                 <p className="text-muted-foreground">Three quick questions — under 60 seconds — to tailor your dashboard.</p>
                 <div className="flex justify-end">
                   <Button variant="gradient" size="lg" onClick={next}>
@@ -87,7 +87,7 @@ export default function OnboardingPage() {
 
             {step === 1 && (
               <>
-                <h1 className="font-display text-2xl sm:text-3xl font-bold">What brings you to Marketly?</h1>
+                <h1 className="font-display text-2xl sm:text-3xl font-bold">What brings you to Reach?</h1>
                 <p className="text-muted-foreground text-sm">You can change this later.</p>
                 <div className="space-y-2">
                   {ROLES.map((r) => (
@@ -157,7 +157,7 @@ export default function OnboardingPage() {
                     <Check className="size-7" />
                   </div>
                   <h1 className="font-display text-2xl sm:text-3xl font-bold">You're in.</h1>
-                  <p className="text-muted-foreground">Welcome to Marketly. Your dashboard is ready.</p>
+                  <p className="text-muted-foreground">Welcome to Reach. Your dashboard is ready.</p>
                 </div>
                 <div className="flex justify-center gap-3 pt-2">
                   <Button asChild variant="outline" size="lg">

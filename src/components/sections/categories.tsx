@@ -14,7 +14,7 @@ export function Categories() {
         <SectionHeading
           eyebrow="Built for every business"
           title={<>One marketplace. <span className="gradient-text">Every industry.</span></>}
-          description="From beauty salons to fitness studios — Marketly powers vendors across 12+ industries with templates, booking, payments, and community out of the box."
+          description="From beauty salons to fitness studios — Reach powers vendors across 12+ industries with templates, booking, payments, and community out of the box."
         />
 
         <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">

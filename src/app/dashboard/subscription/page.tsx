@@ -22,7 +22,7 @@ export default function SubscriptionPage() {
     <DashboardShell role="user" title="Subscription">
       <DashboardPageHeader
         title="Subscription"
-        description="Manage your Marketly plan, payment method, and invoices."
+        description="Manage your Reach plan, payment method, and invoices."
       />
 
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
@@ -83,7 +83,7 @@ export default function SubscriptionPage() {
             </div>
             <Button variant="outline" size="md" className="w-full">Update payment method</Button>
             <p className="text-xs text-muted-foreground">
-              Card processing via Stripe. Marketly never stores card details on our servers.
+              Card processing via Stripe. Reach never stores card details on our servers.
             </p>
           </CardContent>
         </Card>

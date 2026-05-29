@@ -14,7 +14,7 @@ import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Experts",
-  description: "Hire vetted Marketly experts for funnel strategy, brand, payments, ops, and paid acquisition. Average response time under 6 hours.",
+  description: "Hire vetted Reach experts for funnel strategy, brand, payments, ops, and paid acquisition. Average response time under 6 hours.",
 };
 
 export default async function ExpertsPage() {

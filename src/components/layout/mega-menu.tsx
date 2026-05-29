@@ -53,7 +53,7 @@ export function MegaMenu({ sections }: { sections: NavSection[] }) {
         <div className="mt-6 flex items-center justify-between rounded-xl bg-gradient-to-r from-brand-soft via-secondary-soft to-accent-soft p-4">
           <div>
             <div className="text-sm font-semibold">New here?</div>
-            <div className="text-xs text-muted-foreground">Get 3 free listings on Marketly</div>
+            <div className="text-xs text-muted-foreground">Get 3 free listings on Reach</div>
           </div>
           <Link
             href="/sign-up"

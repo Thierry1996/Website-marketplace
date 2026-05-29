@@ -9,15 +9,15 @@ import {
 
 export const metadata: Metadata = {
   title: "FAQ",
-  description: "Common questions about Marketly — plans, payments, bookings, vendor payouts, refunds, and more.",
+  description: "Common questions about Reach — plans, payments, bookings, vendor payouts, refunds, and more.",
 };
 
 const groups: Array<{ heading: string; faqs: Array<{ q: string; a: string }> }> = [
   {
     heading: "Getting started",
     faqs: [
-      { q: "What is Marketly?", a: "Marketly is an all-in-one multi-vendor marketplace platform: templates, bookings, payments, webinars, and community in one product." },
-      { q: "Who is Marketly for?", a: "Independent operators, agencies, and small businesses across e-commerce, services, wellness, education, and digital products. If you sell anything online — products, time, knowledge — Marketly fits." },
+      { q: "What is Reach?", a: "Reach is an all-in-one multi-vendor marketplace platform: templates, bookings, payments, webinars, and community in one product." },
+      { q: "Who is Reach for?", a: "Independent operators, agencies, and small businesses across e-commerce, services, wellness, education, and digital products. If you sell anything online — products, time, knowledge — Reach fits." },
       { q: "Do I need to be technical?", a: "No. Every template ships pixel-perfect and launches in under an hour. For deeper customization, our Pro and Studio plans give you full source-code access." },
     ],
   },
@@ -26,7 +26,7 @@ const groups: Array<{ heading: string; faqs: Array<{ q: string; a: string }> }> 
     faqs: [
       { q: "How does pricing work?", a: "Three flat plans — Starter ($29 one-time), Pro ($79 one-time), Studio ($149/yr). No platform commissions. Stripe's standard processing fees apply on transactions." },
       { q: "Can I upgrade or downgrade?", a: "Anytime. Upgrades are pro-rated. Downgrades take effect at the end of the current billing period." },
-      { q: "What's your refund policy?", a: "30-day no-questions refund on every plan. Email support@marketly.app." },
+      { q: "What's your refund policy?", a: "30-day no-questions refund on every plan. Email support@reach.com." },
     ],
   },
   {
@@ -48,7 +48,7 @@ const groups: Array<{ heading: string; faqs: Array<{ q: string; a: string }> }> 
   {
     heading: "Trust & safety",
     faqs: [
-      { q: "How are vendors vetted?", a: "Identity verification through Stripe Connect KYC plus a human review for storefronts. Bad-actor accounts are flagged via Marketly's review-based trust score." },
+      { q: "How are vendors vetted?", a: "Identity verification through Stripe Connect KYC plus a human review for storefronts. Bad-actor accounts are flagged via Reach's review-based trust score." },
       { q: "Is escrow available?", a: "Yes — every project booking goes into escrow. Funds release only when the buyer marks the work complete." },
       { q: "How do disputes work?", a: "Open a dispute from any order. Our team mediates within 48 hours. Escrowed funds are held until resolution." },
     ],
@@ -61,7 +61,7 @@ export default function FAQPage() {
       <PageHeader
         eyebrow="Frequently asked questions"
         title={<>Answers to <span className="gradient-text">the things that matter most.</span></>}
-        description="Can't find what you're looking for? Email support@marketly.app and we'll reply within 6 hours."
+        description="Can't find what you're looking for? Email support@reach.com and we'll reply within 6 hours."
         align="center"
       />
 

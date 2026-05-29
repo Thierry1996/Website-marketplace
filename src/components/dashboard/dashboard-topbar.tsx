@@ -22,7 +22,7 @@ interface TopbarProps {
 const DEFAULT_USER = {
   user:   { name: "Jane Founder",   initials: "JF", email: "you@business.com" },
   vendor: { name: "Studio Lumière", initials: "SL", email: "vendor@studio.app" },
-  admin:  { name: "Marketly Admin", initials: "MA", email: "admin@marketly.app" },
+  admin:  { name: "Reach Admin", initials: "MA", email: "admin@reach.com" },
 };
 
 export function DashboardTopbar({ role, title, user }: TopbarProps) {

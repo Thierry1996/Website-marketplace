@@ -71,7 +71,7 @@ export const footerSections = [
   {
     heading: "For vendors",
     links: [
-      { label: "Sell on Marketly",   href: "/sell" },
+      { label: "Sell on Reach",   href: "/sell" },
       { label: "Vendor pricing",     href: "/pricing#vendors" },
       { label: "Vendor dashboard",   href: "/vendor" },
       { label: "Stripe payouts",     href: "/docs/payouts" },

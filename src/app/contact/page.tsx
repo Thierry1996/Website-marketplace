@@ -10,14 +10,14 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with the Marketly team — support, sales, partnerships, or press.",
+  description: "Get in touch with the Reach team — support, sales, partnerships, or press.",
 };
 
 const channels = [
   { Icon: Mail,            title: "Support",       body: siteConfig.contact.support,            href: `mailto:${siteConfig.contact.support}` },
-  { Icon: MessageSquare,   title: "Sales",         body: "Talk to a Marketly specialist",       href: "#contact-form" },
+  { Icon: MessageSquare,   title: "Sales",         body: "Talk to a Reach specialist",       href: "#contact-form" },
   { Icon: MapPin,          title: "Headquarters",  body: "San Francisco · Austin · Remote-first" },
-  { Icon: Phone,           title: "Press",         body: "press@marketly.app",                  href: "mailto:press@marketly.app" },
+  { Icon: Phone,           title: "Press",         body: "press@reach.com",                  href: "mailto:press@reach.com" },
 ];
 
 export default function ContactPage() {

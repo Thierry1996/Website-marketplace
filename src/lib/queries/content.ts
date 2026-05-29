@@ -54,7 +54,7 @@ function toWebinar(row: DbWebinar): WebinarEntry {
     slug: row.slug,
     title: row.title,
     description: row.description,
-    host: row.vendor?.displayName ?? "Marketly team",
+    host: row.vendor?.displayName ?? "Reach team",
     hostTitle: "Vendor",
     date: row.startAt.toISOString(),
     durationMin: row.durationMin,
