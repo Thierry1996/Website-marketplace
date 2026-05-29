@@ -35,7 +35,12 @@ const clerkEnabled = !!process.env.CLERK_SECRET_KEY;
 export default clerkEnabled
   ? clerkMiddleware(async (auth, req) => {
       if (!isPublicRoute(req)) {
-        await auth.protect();
+        // Explicit redirect for unauthenticated users — bare `auth.protect()`
+        // returns a 404 in this setup, so redirect to /sign-in with a return path.
+        const { userId, redirectToSignIn } = await auth();
+        if (!userId) {
+          return redirectToSignIn({ returnBackUrl: req.url });
+        }
       }
     })
   : function passthrough() {
