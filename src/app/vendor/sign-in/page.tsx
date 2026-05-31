@@ -6,23 +6,23 @@ import { AuthForm } from "@/components/layout/auth-form";
 import { ClerkSignIn } from "@/components/layout/clerk-auth";
 
 export const metadata: Metadata = {
-  title: "Customer sign in",
-  description: "Sign in to your Reach customer account.",
+  title: "Vendor sign in",
+  description: "Sign in to your Reach vendor portal.",
 };
 
-export default function SignInPage() {
+export default function VendorSignInPage() {
   const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
   return (
-    <AuthLayout role="customer" title="Welcome back" subtitle="Sign in to your Reach customer account.">
+    <AuthLayout role="vendor" title="Vendor sign in" subtitle="Access your storefront, submissions, and payouts.">
       {clerkEnabled
-        ? <ClerkSignIn redirectUrl="/dashboard" signUpUrl="/sign-up" />
+        ? <ClerkSignIn redirectUrl="/vendor" signUpUrl="/vendor/sign-up" />
         : <AuthForm mode="sign-in" />}
 
       <p className="text-center text-xs text-muted-foreground">
-        Are you a vendor?{" "}
-        <Link href="/vendor/sign-in" className="font-semibold text-secondary hover:underline">
-          Use the vendor portal →
+        Looking to buy solutions?{" "}
+        <Link href="/sign-in" className="font-semibold text-brand hover:underline">
+          Customer sign in →
         </Link>
       </p>
     </AuthLayout>

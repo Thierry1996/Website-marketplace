@@ -28,10 +28,10 @@ export default async function UserDashboardPage() {
     <DashboardShell role="user" title="Dashboard">
       <DashboardPageHeader
         title="Welcome back, Jane"
-        description="Here's what's happening with your Reach account."
+        description="Your customer portal — track campaigns, leads & revenue, and buy organic market solutions."
         actions={
-          <Button asChild variant="gradient" size="md">
-            <Link href="/marketplace">Browse marketplace <ArrowRight className="size-4" /></Link>
+          <Button asChild variant="brand" size="md">
+            <Link href="/marketplace">Buy market solutions <ArrowRight className="size-4" /></Link>
           </Button>
         }
       />

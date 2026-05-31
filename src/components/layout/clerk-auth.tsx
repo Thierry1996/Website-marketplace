@@ -3,8 +3,10 @@
 import { SignIn, SignUp } from "@clerk/nextjs";
 
 /**
- * Themed Clerk widgets. We unstyle Clerk's container so it sits cleanly inside
- * AuthLayout, then theme the form elements to match our design tokens.
+ * Themed Clerk widgets, parameterized per account type so customers and
+ * vendors get distinct sign-in flows (different redirect targets + the
+ * cross-linked sign-up URL for their portal). Vendor sign-ups also tag
+ * `role: "vendor"` into Clerk unsafeMetadata.
  */
 
 const APPEARANCE = {
@@ -28,17 +30,44 @@ const APPEARANCE = {
     identityPreviewEditButtonIcon: "text-brand",
   },
   variables: {
-    colorPrimary: "rgb(16 185 129)",
     colorText: "rgb(15 23 42)",
     fontFamily: "var(--font-sans)",
     borderRadius: "0.5rem",
   },
 } as const;
 
-export function ClerkSignIn() {
-  return <SignIn appearance={APPEARANCE as never} routing="hash" />;
+interface ClerkAuthProps {
+  /** Where to send the user after a successful sign-in / sign-up. */
+  redirectUrl: string;
+  /** The matching sign-in route for this portal (so Clerk's footer links stay in-flow). */
+  signInUrl: string;
+  /** The matching sign-up route for this portal. */
+  signUpUrl: string;
 }
 
-export function ClerkSignUp() {
-  return <SignUp appearance={APPEARANCE as never} routing="hash" />;
+export function ClerkSignIn({ redirectUrl, signUpUrl }: Omit<ClerkAuthProps, "signInUrl">) {
+  return (
+    <SignIn
+      appearance={APPEARANCE as never}
+      routing="hash"
+      signUpUrl={signUpUrl}
+      fallbackRedirectUrl={redirectUrl}
+    />
+  );
+}
+
+export function ClerkSignUp({
+  redirectUrl,
+  signInUrl,
+  role,
+}: Omit<ClerkAuthProps, "signUpUrl"> & { role: "customer" | "vendor" }) {
+  return (
+    <SignUp
+      appearance={APPEARANCE as never}
+      routing="hash"
+      signInUrl={signInUrl}
+      fallbackRedirectUrl={redirectUrl}
+      unsafeMetadata={{ role }}
+    />
+  );
 }

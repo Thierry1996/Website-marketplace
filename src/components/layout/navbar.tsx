@@ -83,13 +83,17 @@ export function Navbar() {
               <Link href="/marketplace"><Search className="size-5" /></Link>
             </Button>
 
+            <Button asChild variant="ghost" size="md" className="hidden lg:inline-flex">
+              <Link href="/vendor/sign-in">Vendor portal</Link>
+            </Button>
+
             <Button asChild variant="ghost" size="md" className="hidden sm:inline-flex">
               <Link href="/sign-in">Sign in</Link>
             </Button>
 
             <Button asChild variant="brand" size="md" className="hidden sm:inline-flex">
-              <Link href="/start-trial">
-                Reach my customers
+              <Link href="/join">
+                Get started
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
@@ -156,13 +160,18 @@ export function Navbar() {
 
                 <div className="border-t border-border pt-6 space-y-3">
                   <Button asChild variant="brand" size="lg" className="w-full">
-                    <Link href="/start-trial" onClick={() => setMobileOpen(false)}>
-                      Start free trial <ArrowRight className="size-4" />
+                    <Link href="/join" onClick={() => setMobileOpen(false)}>
+                      Get started <ArrowRight className="size-4" />
                     </Link>
                   </Button>
                   <Button asChild variant="outline" size="lg" className="w-full">
                     <Link href="/sign-in" onClick={() => setMobileOpen(false)}>
-                      Sign in
+                      Customer sign in
+                    </Link>
+                  </Button>
+                  <Button asChild variant="ghost" size="lg" className="w-full">
+                    <Link href="/vendor/sign-in" onClick={() => setMobileOpen(false)}>
+                      Vendor portal
                     </Link>
                   </Button>
                 </div>

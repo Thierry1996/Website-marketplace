@@ -42,7 +42,7 @@ export default function SellPage() {
         actions={
           <>
             <Button asChild variant="gradient" size="lg">
-              <Link href="/sign-up?role=vendor">Start selling free <ArrowRight className="size-4" /></Link>
+              <Link href="/vendor/sign-up">Start selling free <ArrowRight className="size-4" /></Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/pricing#vendors">See vendor pricing</Link>
@@ -142,7 +142,7 @@ export default function SellPage() {
             <p className="text-background/70">14-day free trial. Cancel anytime, keep what you've built.</p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild variant="accent" size="lg">
-                <Link href="/sign-up?role=vendor">Start selling free <ArrowRight className="size-4" /></Link>
+                <Link href="/vendor/sign-up">Start selling free <ArrowRight className="size-4" /></Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white/30 text-background hover:bg-white/10">
                 <Link href="/contact">Talk to sales</Link>

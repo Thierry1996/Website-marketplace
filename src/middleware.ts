@@ -23,6 +23,9 @@ const isPublicRoute = createRouteMatcher([
   "/faq",
   "/sign-in(.*)",
   "/sign-up(.*)",
+  "/vendor/sign-in(.*)",   // vendor auth must stay public even though /vendor is protected
+  "/vendor/sign-up(.*)",
+  "/join",
   "/forgot-password(.*)",
   "/api/webhooks(.*)",
   "/api/chat",
@@ -41,11 +44,16 @@ const clerkEnabled = !!process.env.CLERK_SECRET_KEY;
 export default clerkEnabled
   ? clerkMiddleware(async (auth, req) => {
       if (!isPublicRoute(req)) {
-        // Explicit redirect for unauthenticated users — bare `auth.protect()`
-        // returns a 404 in this setup, so redirect to /sign-in with a return path.
-        const { userId, redirectToSignIn } = await auth();
+        const { userId } = await auth();
         if (!userId) {
-          return redirectToSignIn({ returnBackUrl: req.url });
+          // Route to the correct portal's sign-in. We build the redirect
+          // ourselves because Clerk's redirectToSignIn() only honors
+          // returnBackUrl, not a per-request signInUrl.
+          const isVendorArea = req.nextUrl.pathname.startsWith("/vendor");
+          const signInPath = isVendorArea ? "/vendor/sign-in" : "/sign-in";
+          const url = new URL(signInPath, req.url);
+          url.searchParams.set("redirect_url", req.url);
+          return NextResponse.redirect(url);
         }
       }
     })
