@@ -2,7 +2,7 @@ import {
   LayoutDashboard, ShoppingBag, Calendar, Heart, MessageSquare,
   CreditCard, Settings, Package, Sparkles, BarChart3,
   Users, Building2, Banknote, ShieldCheck, FileText,
-  Store, Code2, Megaphone,
+  Store, Code2, Megaphone, Wand2,
 } from "lucide-react";
 
 export type DashRole = "user" | "vendor" | "admin";
@@ -23,6 +23,7 @@ export const userDashNav: DashNavGroup[] = [
   {
     items: [
       { label: "Overview",      href: "/dashboard",              icon: LayoutDashboard },
+      { label: "Site analyzer", href: "/dashboard/analyzer",     icon: Wand2, badge: "AI" },
       { label: "Campaigns",     href: "/dashboard/campaigns",    icon: Megaphone },
       { label: "Orders",        href: "/dashboard/orders",       icon: ShoppingBag },
       { label: "Bookings",      href: "/dashboard/bookings",     icon: Calendar },
@@ -93,9 +94,10 @@ export const adminDashNav: DashNavGroup[] = [
   {
     heading: "Operations",
     items: [
-      { label: "Payments",       href: "/admin/payments",    icon: CreditCard },
-      { label: "Reports",        href: "/admin/reports",     icon: FileText },
-      { label: "Moderation",     href: "/admin/moderation",  icon: ShieldCheck },
+      { label: "Payments",       href: "/admin/payments",     icon: CreditCard },
+      { label: "Site reports",   href: "/admin/site-reports", icon: Wand2, badge: "AI" },
+      { label: "Reports",        href: "/admin/reports",      icon: FileText },
+      { label: "Moderation",     href: "/admin/moderation",   icon: ShieldCheck },
     ],
   },
 ];

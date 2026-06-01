@@ -3,6 +3,7 @@ import { Footer }               from "@/components/layout/footer";
 import { Hero }                 from "@/components/sections/hero";
 import { TrustedBy }            from "@/components/sections/trusted-by";
 import { SolutionSuite }        from "@/components/sections/solution-suite";
+import { AnalyzerCTA }          from "@/components/sections/analyzer-cta";
 import { Integrations }         from "@/components/sections/integrations";
 import { SubscriptionFeatures } from "@/components/sections/subscription-features";
 import { LeadCaptureSection }   from "@/components/sections/lead-capture";
@@ -24,6 +25,7 @@ export default function HomePage() {
         <Hero />
         <TrustedBy />
         <SolutionSuite />
+        <AnalyzerCTA />
         <LeadCaptureSection />
         <Integrations />
 

@@ -30,6 +30,8 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks(.*)",
   "/api/chat",
   "/api/analyze-code",
+  "/api/analyze-site",
+  "/analyzer(.*)",         // public AI site analyzer + generated reports
   "/preview(.*)",          // public live previews of approved submissions
   "/start-trial",
   "/sell",
