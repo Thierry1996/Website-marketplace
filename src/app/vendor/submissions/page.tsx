@@ -18,8 +18,8 @@ const STATUS_VARIANT: Record<string, "brand" | "outline" | "danger" | "secondary
   rejected:    "danger",
 };
 
-export default function VendorSubmissionsPage() {
-  const subs = listSubmissions();
+export default async function VendorSubmissionsPage() {
+  const subs = await listSubmissions();
 
   return (
     <DashboardShell role="vendor" title="Code submissions">

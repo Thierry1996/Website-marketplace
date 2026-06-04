@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { listApproved } from "@/lib/submissions-store";
 
-export function SubmissionsStrip() {
-  const subs = listApproved().slice(0, 6);
+export async function SubmissionsStrip() {
+  const subs = (await listApproved()).slice(0, 6);
   if (subs.length === 0) return null;
 
   return (

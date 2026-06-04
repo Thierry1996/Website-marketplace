@@ -43,14 +43,22 @@ const isPublicRoute = createRouteMatcher([
 // Only run Clerk if keys are configured; in dev with no keys, no-op pass-through.
 const clerkEnabled = !!process.env.CLERK_SECRET_KEY;
 
+/**
+ * OPEN ACCESS (current phase): every route is reachable without signing in, so
+ * any visitor can explore the app and submit forms. We still run
+ * clerkMiddleware so an optional Clerk session (sign-in, <UserButton>) keeps
+ * working — we just don't force a redirect. Flip OPEN_ACCESS to false to
+ * re-enable per-portal route protection (logic preserved below).
+ */
+const OPEN_ACCESS = true;
+
 export default clerkEnabled
   ? clerkMiddleware(async (auth, req) => {
+      if (OPEN_ACCESS) return; // allow everyone through
+
       if (!isPublicRoute(req)) {
         const { userId } = await auth();
         if (!userId) {
-          // Route to the correct portal's sign-in. We build the redirect
-          // ourselves because Clerk's redirectToSignIn() only honors
-          // returnBackUrl, not a per-request signInUrl.
           const isVendorArea = req.nextUrl.pathname.startsWith("/vendor");
           const signInPath = isVendorArea ? "/vendor/sign-in" : "/sign-in";
           const url = new URL(signInPath, req.url);

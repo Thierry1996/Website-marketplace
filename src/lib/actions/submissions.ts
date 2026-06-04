@@ -71,7 +71,7 @@ export async function createSubmission(input: unknown): Promise<ActionResult<{ i
   };
 
   try {
-    saveSubmission(record);
+    await saveSubmission(record);
     return ok({ id, previewSlug });
   } catch (err) {
     return fail((err as Error).message);

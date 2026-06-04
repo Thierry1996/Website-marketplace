@@ -15,8 +15,8 @@ function scoreVariant(n: number): "brand" | "secondary" | "danger" {
   return n >= 80 ? "brand" : n >= 60 ? "secondary" : "danger";
 }
 
-export default function AdminSiteReportsPage() {
-  const reports = listReports();
+export default async function AdminSiteReportsPage() {
+  const reports = await listReports();
   const avg = reports.length ? Math.round(reports.reduce((s, r) => s + r.overall, 0) / reports.length) : 0;
   const aiCount = reports.filter((r) => r.aiPowered).length;
 

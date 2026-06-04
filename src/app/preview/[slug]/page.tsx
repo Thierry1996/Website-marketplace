@@ -11,7 +11,7 @@ type Params = { slug: string };
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const s = getSubmissionBySlug(slug);
+  const s = await getSubmissionBySlug(slug);
   return {
     title: s ? `${s.title} · Live preview` : "Preview not found",
     description: s?.description,
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function PreviewPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const s = getSubmissionBySlug(slug);
+  const s = await getSubmissionBySlug(slug);
   if (!s) notFound();
 
   const html = s.files.find((f) => f.path.endsWith("index.html") || f.path.endsWith(".html"))?.content;

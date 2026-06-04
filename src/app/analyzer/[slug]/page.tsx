@@ -15,7 +15,7 @@ type Params = { slug: string };
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const r = getReport(slug);
+  const r = await getReport(slug);
   return {
     title: r ? `${r.businessName} · Site Performance Report` : "Report not found",
     robots: { index: false },
@@ -37,7 +37,7 @@ const SEV: Record<string, { label: string; cls: string }> = {
 
 export default async function ReportPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const r = getReport(slug);
+  const r = await getReport(slug);
   if (!r) notFound();
 
   const created = new Date(r.createdAt).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" });

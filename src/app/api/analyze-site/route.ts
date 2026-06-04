@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     aiPowered,
   };
 
-  saveReport(report); // also the master-admin copy (admin feed reads this store)
+  await saveReport(report); // also the master-admin copy (admin feed reads this store)
 
   // Notify the master admin (best effort; logs to console without Resend key).
   sendEmail({

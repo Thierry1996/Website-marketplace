@@ -1,8 +1,10 @@
 /**
- * Code submission store. Keeps records in-memory (per dev session) until a
- * Prisma `Submission` table is added. Vendor identity is recorded so the
- * privacy/encryption layer can enforce ownership on reads.
+ * Code submission store. Persists to Supabase (public.submissions) when
+ * configured, merged with the in-memory seed so demo content always shows.
+ * Falls back to pure in-memory otherwise.
  */
+
+import { sbData } from "@/lib/supabase/data";
 
 export type Framework = "html" | "react" | "nextjs" | "wordpress";
 
@@ -47,27 +49,100 @@ declare global {
 
 if (!globalThis.__reach_submissions__) globalThis.__reach_submissions__ = seed();
 
-export function listSubmissions(opts?: { vendorId?: string; status?: SubmissionStatus }): SubmissionRecord[] {
-  const all = globalThis.__reach_submissions__ ?? [];
+function mem(): SubmissionRecord[] {
+  return globalThis.__reach_submissions__ ?? [];
+}
+
+/** Merge Supabase rows with the in-memory seed, deduped by id (db wins). */
+async function allRecords(): Promise<SubmissionRecord[]> {
+  const sb = sbData();
+  if (sb) {
+    try {
+      const { data, error } = await sb.from("submissions").select("*").order("created_at", { ascending: false }).limit(200);
+      if (!error && data) {
+        const dbRecords = data.map(fromRow);
+        const dbIds = new Set(dbRecords.map((r) => r.id));
+        const seedOnly = mem().filter((s) => !dbIds.has(s.id));
+        return [...dbRecords, ...seedOnly];
+      }
+    } catch { /* fall through */ }
+  }
+  return mem();
+}
+
+export async function listSubmissions(opts?: { vendorId?: string; status?: SubmissionStatus }): Promise<SubmissionRecord[]> {
+  const all = await allRecords();
   return all.filter((s) =>
     (!opts?.vendorId || s.vendorId === opts.vendorId) &&
     (!opts?.status   || s.status   === opts.status)
   );
 }
 
-export function listApproved(): SubmissionRecord[] {
-  return (globalThis.__reach_submissions__ ?? []).filter((s) => s.status === "approved" || s.status === "needs_build");
+export async function listApproved(): Promise<SubmissionRecord[]> {
+  const all = await allRecords();
+  return all.filter((s) => s.status === "approved" || s.status === "needs_build");
 }
 
-export function getSubmissionBySlug(slug: string): SubmissionRecord | null {
-  return (globalThis.__reach_submissions__ ?? []).find((s) => s.previewSlug === slug) ?? null;
+export async function getSubmissionBySlug(slug: string): Promise<SubmissionRecord | null> {
+  const sb = sbData();
+  if (sb) {
+    try {
+      const { data, error } = await sb.from("submissions").select("*").eq("preview_slug", slug).maybeSingle();
+      if (!error && data) return fromRow(data);
+    } catch { /* fall through */ }
+  }
+  return mem().find((s) => s.previewSlug === slug) ?? null;
 }
 
-export function saveSubmission(s: SubmissionRecord) {
-  const list = globalThis.__reach_submissions__ ?? [];
+export async function saveSubmission(s: SubmissionRecord): Promise<void> {
+  const sb = sbData();
+  if (sb) {
+    try {
+      const { error } = await sb.from("submissions").upsert({
+        id: s.id,
+        vendor_id: s.vendorId,
+        title: s.title,
+        description: s.description,
+        framework: s.framework,
+        repo_url: s.repoUrl,
+        files: s.files,
+        thumbnail: s.thumbnail,
+        category: s.category,
+        status: s.status,
+        analysis: s.analysis,
+        preview_slug: s.previewSlug,
+        updated_at: new Date().toISOString(),
+      });
+      if (!error) return;
+      console.warn("[submissions] Supabase upsert failed, using memory:", error.message);
+    } catch (err) {
+      console.warn("[submissions] Supabase error, using memory:", (err as Error).message);
+    }
+  }
+  const list = mem();
   const idx = list.findIndex((x) => x.id === s.id);
   if (idx >= 0) list[idx] = s; else list.unshift(s);
   globalThis.__reach_submissions__ = list.slice(0, 200);
+}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function fromRow(r: any): SubmissionRecord {
+  return {
+    id: r.id,
+    vendorId: r.vendor_id ?? "anonymous",
+    title: r.title,
+    description: r.description ?? "",
+    framework: r.framework,
+    repoUrl: r.repo_url ?? undefined,
+    files: r.files ?? [],
+    thumbnail: r.thumbnail ?? undefined,
+    category: r.category ?? undefined,
+    status: r.status,
+    analysis: r.analysis ?? undefined,
+    previewSlug: r.preview_slug,
+    createdAt: r.created_at ?? new Date().toISOString(),
+    updatedAt: r.updated_at ?? new Date().toISOString(),
+  };
 }
 
 export function makeId() {
