@@ -135,9 +135,188 @@ export interface BlogPost {
   readMin: number;
   gradient: string;
   body: BlogSection[];
+  keywords?: string[];
+  featured?: boolean;
 }
 
 export const blogPosts: BlogPost[] = [
+  // ===========================================================================
+  // Pillar growth posts (featured target areas)
+  // ===========================================================================
+  {
+    slug: "growth-maximizing-playbook",
+    title: "The growth-maximizing playbook: turn attention into predictable revenue",
+    excerpt: "The exact system Reach uses to compound a small business's growth — traffic, capture, conversion, and retention working as one engine instead of four disconnected tactics.",
+    author: "Lena Park", date: "2026-06-02", category: "Growth", readMin: 9, featured: true,
+    gradient: "linear-gradient(135deg,#FF4D6D,#FF8A3D)",
+    keywords: ["business growth", "maximize revenue", "small business marketing", "growth strategy", "lead generation", "marketing funnel"],
+    body: [
+      { paragraphs: [
+        "Most small businesses don't have a marketing problem — they have a system problem. They run an ad here, post a reel there, send the occasional email, and wonder why growth feels random. Predictable growth comes from one connected engine, not a pile of disconnected tactics.",
+        "At Reach we model every business as four stages that must work together: attract, capture, convert, retain. When one stage leaks, everything downstream starves. The playbook below is how we plug the leaks and compound the result.",
+      ]},
+      { heading: "1. Attract — show up where intent already exists", paragraphs: [
+        "Paid social puts you in front of cold audiences; SEO and content catch people already searching. Run both and you stop depending on a single channel that can change its algorithm overnight.",
+      ], bullets: [
+        "Meta + TikTok ads for demand generation",
+        "SEO + helpful content for demand capture",
+        "One tracked link strategy so every visit is attributable",
+      ]},
+      { heading: "2. Capture — never let a warm visitor leave empty-handed", paragraphs: [
+        "A lead magnet, quiz, or free site audit converts anonymous traffic into contacts you own. The businesses that grow fastest treat capture as non-negotiable on every page.",
+      ]},
+      { heading: "3. Convert — engineer the path to 'yes'", paragraphs: [
+        "Conversion isn't a single button — it's a sequence: a hero that states the outcome, proof that removes doubt, an offer that's easy to say yes to, and follow-up that handles the 80% who weren't ready on day one.",
+      ]},
+      { heading: "4. Retain — the cheapest growth you'll ever buy", paragraphs: [
+        "It costs 5–7x more to win a new customer than to keep one. Lifecycle email, loyalty offers, and rebooking flows turn a one-time buyer into a repeat one — and repeat buyers fund your ad budget.",
+      ]},
+      { heading: "How Reach is different", paragraphs: [
+        "Agencies sell you one slice — ads, or SEO, or a website. Reach runs the whole engine from one platform, with the data flowing between stages so we optimize the system, not a silo. That's why our clients average 4.7x ROAS and keep it. Start free and we'll map your engine in the first call.",
+      ]},
+    ],
+  },
+  {
+    slug: "automation-with-ai-marketing",
+    title: "Automation with AI: how to run a marketing department of one",
+    excerpt: "Agentic AI now handles the busywork that used to need a team — content, replies, optimization, and reporting. Here's how to put it to work without losing your brand's voice.",
+    author: "Marcus Reyes", date: "2026-05-30", category: "AI Automation", readMin: 8, featured: true,
+    gradient: "linear-gradient(135deg,#7C3AED,#2563EB)",
+    keywords: ["AI marketing automation", "agentic AI", "marketing automation", "AI for small business", "autopilot marketing"],
+    body: [
+      { paragraphs: [
+        "Two years ago, 'marketing automation' meant a clunky email sequence. Today, agentic AI can draft your content, answer your DMs, reallocate ad spend, and write your monthly report — while you sleep. The winners aren't the businesses with the biggest teams; they're the ones who automate the repetitive 80% and spend their human hours on the 20% that needs judgment.",
+      ]},
+      { heading: "What to automate first", paragraphs: [
+        "Start where the work is repetitive, high-volume, and rules-based:",
+      ], bullets: [
+        "Content drafting — hooks, captions, blog outlines, ad variants",
+        "First-response messaging — DMs, comments, FAQs, lead replies",
+        "Ad optimization — pausing losers, scaling winners by target CPA",
+        "Reporting — pulling every channel into one weekly summary",
+      ]},
+      { heading: "Keep the brand voice human", paragraphs: [
+        "Automation fails when it sounds like a robot. The fix is a brand brief the AI references every time — your tone, your offers, your do-not-say list — plus a human approving anything customer-facing until you trust the output.",
+      ]},
+      { heading: "The Reach approach", paragraphs: [
+        "Reach connects agentic-commerce AI directly to your storefront and channels, trained on your brand, with a human-in-the-loop for anything sensitive. You get the speed of automation and the trust of a real team. Try it free for 7 days.",
+      ]},
+    ],
+  },
+  {
+    slug: "expert-account-management",
+    title: "Expert account management: what a real growth partner actually does",
+    excerpt: "A dashboard isn't a strategy. Here's what dedicated expert account management looks like — and why it's the difference between spending on marketing and growing from it.",
+    author: "Sasha Malik", date: "2026-05-28", category: "Account Management", readMin: 7,
+    gradient: "linear-gradient(135deg,#10B981,#06B6D4)",
+    keywords: ["account management", "growth partner", "marketing agency", "dedicated strategist", "managed marketing"],
+    body: [
+      { paragraphs: [
+        "Plenty of tools hand you a dashboard and wish you luck. The problem: a dashboard tells you what happened, never what to do next. Expert account management is the layer that turns data into decisions — a real person who owns your outcome.",
+      ]},
+      { heading: "What good account management looks like", bullets: [
+        "A named strategist who knows your business, not a ticket queue",
+        "A 30/60/90-day plan with targets you both agreed on",
+        "Weekly optimization — not 'set it and forget it'",
+        "Proactive ideas, not just answers when you ask",
+        "Clear reporting tied to revenue, not vanity metrics",
+      ], paragraphs: [] },
+      { heading: "Why it pays for itself", paragraphs: [
+        "The fastest-growing businesses we work with don't have more budget — they have someone catching the small misses early: the ad fatiguing, the page that stopped converting, the follow-up that never went out. Compounded over months, those catches are the entire difference.",
+      ]},
+      { heading: "The Reach difference", paragraphs: [
+        "Every Reach plan includes a strategist who runs your engine with you — and our AI does the heavy lifting so they spend their time on strategy, not spreadsheets. That's expert management at software prices. Book your free strategy call.",
+      ]},
+    ],
+  },
+  {
+    slug: "growing-a-new-store",
+    title: "Growing a new store from zero: the first-90-days plan",
+    excerpt: "No traffic, no list, no reviews. Here's the exact 90-day sequence we use to take a brand-new store from launch to a repeatable flow of customers.",
+    author: "Priya Shah", date: "2026-05-26", category: "New Store", readMin: 8,
+    gradient: "linear-gradient(135deg,#F472B6,#FBBF24)",
+    keywords: ["grow a new store", "ecommerce launch", "first customers", "new business marketing", "store launch plan"],
+    body: [
+      { paragraphs: [
+        "Launching a store is exciting for about 48 hours — then the silence sets in. No traffic, no sales, no idea what to fix first. The good news: every successful store followed a similar early path. Here's the 90-day version.",
+      ]},
+      { heading: "Days 1–30: foundation + first traffic", bullets: [
+        "Ship a fast, mobile-first store with one clear offer",
+        "Install capture (email pop-up or quiz) before driving any traffic",
+        "Launch a small, tightly-targeted ad test to learn what converts",
+        "Set up tracking so every dollar is attributable",
+      ], paragraphs: [] },
+      { heading: "Days 31–60: find your winning angle", paragraphs: [
+        "Now you have data. Double down on the audience, creative, and offer that converted; kill the rest. Start publishing content around the questions your buyers actually ask — that's the SEO compounding that pays off in month 4+.",
+      ]},
+      { heading: "Days 61–90: build the repeatable engine", paragraphs: [
+        "With a proven offer and channel, you scale spend carefully, add lifecycle email to lift repeat purchases, and turn happy customers into reviews and referrals. By day 90 you have a flywheel, not a guessing game.",
+      ]},
+      { heading: "Why start with Reach", paragraphs: [
+        "We give new stores the whole stack on day one — store, ads, capture, email, and a strategist — so you skip the 'stitch six tools together' phase and start learning immediately. Start free; first customers usually arrive within the first two weeks.",
+      ]},
+    ],
+  },
+  {
+    slug: "first-100k-in-profits",
+    title: "Making your first $100K in profits (not just revenue)",
+    excerpt: "Revenue is vanity; profit is sanity. The margin-first framework we use to take a business to its first six figures of actual take-home profit.",
+    author: "Aaron Woods", date: "2026-05-24", category: "Profit", readMin: 10, featured: true,
+    gradient: "linear-gradient(135deg,#16A34A,#84CC16)",
+    keywords: ["first 100k profit", "business profit", "profit margin", "make money online", "profitable business", "scale profitably"],
+    body: [
+      { paragraphs: [
+        "It's easy to be busy and broke — plenty of businesses do six figures in revenue and keep almost none of it. Your first $100K in profit is a different game than your first $100K in sales. It's won on margin, retention, and efficiency, not just top-line growth.",
+      ]},
+      { heading: "1. Know your real numbers", paragraphs: [
+        "You can't grow profit you can't see. Nail your contribution margin per product, your customer acquisition cost, and your payback period. Most owners are shocked which products actually make money once they do this.",
+      ]},
+      { heading: "2. Win on retention, not just acquisition", paragraphs: [
+        "Profit hides in the second, third, and fourth purchase — where there's no ad cost. A modest lift in repeat rate often beats doubling ad spend, and it's far cheaper.",
+      ], bullets: [
+        "Lifecycle email + SMS to drive repeat orders",
+        "Subscriptions or bundles to raise average order value",
+        "A loyalty reason to come back",
+      ]},
+      { heading: "3. Spend where the math works", paragraphs: [
+        "Scale the channels and offers with a payback under your threshold; starve the ones that don't. Discipline here is the entire difference between profitable scale and a treadmill.",
+      ]},
+      { heading: "The Reach edge", paragraphs: [
+        "Reach surfaces the profit math in your dashboard — leads, spend, credits, and revenue in one view — and automates the retention flows that compound margin. We optimize for take-home, not just top-line. Start your free trial and see your real numbers.",
+      ]},
+    ],
+  },
+  {
+    slug: "reaching-clients-painpoint-solutions",
+    title: "Reaching clients: solutions to the 7 pain points stalling your growth",
+    excerpt: "Can't get found, can't convert, can't keep up? The seven most common growth blockers we see in SMBs — and the exact Reach fix for each.",
+    author: "Lena Park", date: "2026-05-21", category: "Pain Points", readMin: 9,
+    gradient: "linear-gradient(135deg,#2563EB,#7C3AED)",
+    keywords: ["reach customers", "get more clients", "small business problems", "marketing pain points", "customer acquisition"],
+    body: [
+      { paragraphs: [
+        "Across thousands of small businesses, the same handful of pain points come up again and again. If your growth feels stuck, it's almost certainly one of these — and each has a concrete fix.",
+      ]},
+      { heading: "The 7 blockers — and the fix", bullets: [
+        "“Nobody can find us.” → SEO + a presence on the channels your buyers use, run together.",
+        "“We get traffic but no leads.” → A capture mechanism on every page (quiz, lead magnet, free audit).",
+        "“Leads don't convert.” → A conversion-tested funnel + follow-up for the 80% not ready today.",
+        "“We can't keep up with content.” → AI content engine, on-brand, publishing weekly.",
+        "“Our ads lose money.” → Disciplined test-and-scale to a target CPA, optimized continuously.",
+        "“Customers buy once and vanish.” → Lifecycle email + loyalty to drive repeat revenue.",
+        "“We're flying blind.” → One dashboard for leads, spend, and revenue so decisions are data-driven.",
+      ], paragraphs: [] },
+      { heading: "The common thread", paragraphs: [
+        "Notice that no single tactic fixes growth — each blocker connects to the next. That's exactly why point solutions disappoint and why an integrated engine wins.",
+      ]},
+      { heading: "How Reach solves all seven", paragraphs: [
+        "One platform, one strategist, one connected engine — so the fix for blocker #1 strengthens #2 through #7 instead of fragmenting your stack. Run a free AI site analysis and we'll tell you which blocker is costing you most right now.",
+      ]},
+    ],
+  },
+  // ===========================================================================
+  // Channel / how-it-works posts
+  // ===========================================================================
   {
     slug: "meta-ads-on-autopilot",
     title: "Meta Ads on autopilot: how Reach runs Facebook & Instagram campaigns from one backend",

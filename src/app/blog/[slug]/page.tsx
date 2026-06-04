@@ -9,7 +9,12 @@ import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { BlogShare } from "@/components/marketing/blog-share";
+import { BlogSubscribe } from "@/components/marketing/blog-subscribe";
+import { SocialFollow } from "@/components/marketing/social-follow";
+import { Button } from "@/components/ui/button";
 import { getBlogPosts, getBlogPostBySlug } from "@/lib/queries";
+import { siteConfig } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -22,7 +27,24 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
   if (!post) return { title: "Post not found" };
-  return { title: post.title, description: post.excerpt };
+  const url = `${siteConfig.url}/blog/${post.slug}`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    keywords: post.keywords,
+    alternates: { canonical: url },
+    authors: [{ name: post.author }],
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description: post.excerpt,
+      siteName: siteConfig.name,
+      publishedTime: post.date,
+      authors: [post.author],
+    },
+    twitter: { card: "summary_large_image", title: post.title, description: post.excerpt },
+  };
 }
 
 function formatDate(iso: string) {
@@ -37,9 +59,26 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
   const all = await getBlogPosts();
   const more = all.filter((p) => p.slug !== post.slug).slice(0, 3);
   const initials = post.author.split(" ").map((w) => w[0]).join("").toUpperCase();
+  const url = `${siteConfig.url}/blog/${post.slug}`;
+
+  // Article structured data — boosts indexing on Google, Yandex, Bing/Edge.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Person", name: post.author },
+    publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    keywords: (post.keywords ?? []).join(", "),
+    articleSection: post.category,
+  };
 
   return (
     <PageShell>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Container className="py-8">
         <Breadcrumb items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
       </Container>
@@ -66,6 +105,8 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                 </div>
               </div>
             </div>
+
+            <div className="pt-2"><BlogShare title={post.title} /></div>
           </div>
 
           <div className="relative my-10 aspect-[16/9] rounded-2xl overflow-hidden border border-border" style={{ background: post.gradient }} />
@@ -89,12 +130,35 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               </section>
             ))}
 
-            <div className="mt-10 rounded-2xl border border-border bg-surface p-6 text-center">
-              <p className="font-display text-lg font-bold text-foreground">Ready to put this to work?</p>
-              <p className="mt-1 text-sm text-muted-foreground">Start a free 7-day trial — $0 today, cancel anytime.</p>
-              <Link href="/start-trial" className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition">
-                Start free <ArrowLeft className="size-4 rotate-180" />
-              </Link>
+          </div>
+
+          {/* Subscribe funnel */}
+          <div className="mt-12">
+            <BlogSubscribe />
+          </div>
+
+          {/* Share + follow + experts */}
+          <div className="mt-8 flex flex-col gap-6 rounded-2xl border border-border bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="font-display font-bold">Found this useful? Share it.</div>
+              <div className="mt-3"><BlogShare title={post.title} /></div>
+            </div>
+            <div className="sm:text-right">
+              <div className="text-xs text-muted-foreground mb-2">Follow Reach for more</div>
+              <SocialFollow />
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-ink p-6 text-center text-white">
+            <p className="font-display text-lg font-bold">Are you a knowledge expert?</p>
+            <p className="mt-1 text-sm text-white/70">Share your opinions in our community and get featured on the blog.</p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              <Button asChild variant="default" size="md" className="bg-white text-foreground hover:bg-white/90">
+                <Link href="/sign-up">Join the community <ArrowLeft className="size-4 rotate-180" /></Link>
+              </Button>
+              <Button asChild variant="outline" size="md" className="border-white/30 text-white hover:bg-white/10">
+                <Link href="/community">Visit the forum</Link>
+              </Button>
             </div>
           </div>
         </Container>

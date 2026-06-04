@@ -37,7 +37,7 @@ export const mainNav: { label: string; href: string; sections?: NavSection[] }[]
     ],
   },
   { label: "Experts",   href: "/experts" },
-  { label: "Webinars",  href: "/webinars" },
+  { label: "Blog",      href: "/blog" },
   { label: "Community", href: "/community" },
   { label: "Pricing",   href: "/pricing" },
 ];

@@ -25,6 +25,8 @@ export const siteConfig = {
     linkedin: "https://linkedin.com/company/reach",
     instagram: "https://instagram.com/reach",
     tiktok: "https://tiktok.com/@reach",
+    youtube: "https://youtube.com/@reach",
+    facebook: "https://facebook.com/reach",
   },
   contact: {
     email: "hello@reach.com",
