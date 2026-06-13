@@ -157,6 +157,20 @@ export const pricingPlans: PricingPlan[] = [
 ];
 
 export const marketplaceListings: Listing[] = [
+  {
+    id: "brasa-steakhouse",
+    title: "BRASA — Steakhouse & Supper Club Website",
+    vendor: "Reach Studio",
+    category: "Food",
+    priceCents: 1000,
+    rating: 5.0,
+    reviewCount: 38,
+    location: "Miami",
+    badge: "FEATURED",
+    // Real, fully-navigable demo hosted by Reach (static export under /public).
+    previewUrl: "/apps/brasa/",
+    gradient: "linear-gradient(135deg,#0A0908 0%,#B8893A 100%)",
+  },
   ...featuredListings,
   { id: "7",  title: "Subscription Box Storefront Template",   vendor: "BoxCraft Studio",  category: "E-commerce", priceCents: 4900, rating: 4.7, reviewCount: 121, location: "Remote",       gradient: "linear-gradient(135deg,#EC4899 0%,#F59E0B 100%)" },
   { id: "8",  title: "Local Service Booking Pro",              vendor: "BookFlow",         category: "Services",   priceCents: 5500, rating: 4.6, reviewCount: 86,  location: "Denver",       badge: "NEW",        gradient: "linear-gradient(135deg,#06B6D4 0%,#3B82F6 100%)" },

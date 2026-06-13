@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Star, ShieldCheck, Clock, MessageSquare, Heart, Share2, ArrowRight } from "lucide-react";
+import { Star, ShieldCheck, Clock, MessageSquare, Heart, Share2, ArrowRight, ExternalLink, Monitor } from "lucide-react";
 
 import { PageShell } from "@/components/layout/page-shell";
 import { Container } from "@/components/ui/container";
@@ -57,34 +57,66 @@ export default async function ListingDetailPage({ params }: { params: Promise<Pa
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
           {/* Left — gallery + tabs */}
           <div className="space-y-6">
-            <div
-              className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border"
-              style={{ background: listing.gradient }}
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 opacity-[0.08]"
-                style={{
-                  backgroundImage:
-                    "repeating-linear-gradient(0deg, rgba(255,255,255,.6) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, rgba(255,255,255,.6) 0 1px, transparent 1px 40px)",
-                }}
-              />
-              {listing.badge && (
-                <Badge variant={listing.badge === "BESTSELLER" ? "shimmer" : "accent"} className="absolute left-4 top-4">
-                  {listing.badge}
-                </Badge>
-              )}
-            </div>
-
-            <div className="grid grid-cols-4 gap-3">
-              {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="aspect-square rounded-lg border border-border opacity-70 hover:opacity-100 cursor-pointer transition-opacity"
-                  style={{ background: listing.gradient, filter: `hue-rotate(${i * 30}deg)` }}
+            {listing.previewUrl ? (
+              /* Live, fully-navigable app preview — embedded browser frame + open-in-new-tab */
+              <div className="overflow-hidden rounded-2xl border border-border shadow-xl shadow-black/5">
+                <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-2.5">
+                  <div className="flex gap-1.5">
+                    <span className="size-3 rounded-full bg-red-400" />
+                    <span className="size-3 rounded-full bg-amber-400" />
+                    <span className="size-3 rounded-full bg-emerald-400" />
+                  </div>
+                  <div className="mx-auto flex items-center gap-1.5 rounded-md bg-background px-3 py-1 text-xs text-muted-foreground">
+                    <Monitor className="size-3.5" /> Live preview
+                  </div>
+                  <a
+                    href={listing.previewUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs font-semibold hover:bg-surface-elevated"
+                  >
+                    Open full app <ExternalLink className="size-3.5" />
+                  </a>
+                </div>
+                <iframe
+                  title={`${listing.title} — live preview`}
+                  src={listing.previewUrl}
+                  className="w-full aspect-[16/10] bg-white"
+                  loading="lazy"
                 />
-              ))}
-            </div>
+              </div>
+            ) : (
+              <>
+                <div
+                  className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border"
+                  style={{ background: listing.gradient }}
+                >
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 opacity-[0.08]"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(0deg, rgba(255,255,255,.6) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, rgba(255,255,255,.6) 0 1px, transparent 1px 40px)",
+                    }}
+                  />
+                  {listing.badge && (
+                    <Badge variant={listing.badge === "BESTSELLER" ? "shimmer" : "accent"} className="absolute left-4 top-4">
+                      {listing.badge}
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-4 gap-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="aspect-square rounded-lg border border-border opacity-70 hover:opacity-100 cursor-pointer transition-opacity"
+                      style={{ background: listing.gradient, filter: `hue-rotate(${i * 30}deg)` }}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* Title block */}
             <div>
@@ -196,6 +228,13 @@ export default async function ListingDetailPage({ params }: { params: Promise<Pa
                 </div>
 
                 <div className="space-y-2.5">
+                  {listing.previewUrl && (
+                    <Button asChild variant="brand" size="lg" className="w-full">
+                      <a href={listing.previewUrl} target="_blank" rel="noreferrer noopener">
+                        <Monitor className="size-4" /> Preview live app <ExternalLink className="size-4" />
+                      </a>
+                    </Button>
+                  )}
                   <Button variant="gradient" size="lg" className="w-full">
                     Buy now <ArrowRight className="size-4" />
                   </Button>

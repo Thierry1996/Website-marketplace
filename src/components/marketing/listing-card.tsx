@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, Star, MapPin, ArrowRight } from "lucide-react";
+import { Heart, Star, MapPin, ArrowRight, Play } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +20,9 @@ export interface Listing {
   location?: string;
   badge?: "BESTSELLER" | "NEW" | "FEATURED";
   gradient: string;
+  /** Live, fully-navigable hosted demo. When set, the listing shows a
+   *  "Live preview" affordance and an embedded preview on the detail page. */
+  previewUrl?: string;
 }
 
 export function ListingCard({ listing, index = 0 }: { listing: Listing; index?: number }) {
@@ -53,6 +57,12 @@ export function ListingCard({ listing, index = 0 }: { listing: Listing; index?: 
             >
               {listing.badge}
             </Badge>
+          )}
+
+          {listing.previewUrl && (
+            <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 text-[0.65rem] font-semibold text-white backdrop-blur">
+              <Play className="size-3 fill-current" /> Live demo
+            </span>
           )}
         </div>
 
@@ -89,9 +99,11 @@ export function ListingCard({ listing, index = 0 }: { listing: Listing; index?: 
                 {formatCurrency(listing.priceCents / 100)}
               </div>
             </div>
-            <Button variant="brand" size="sm">
-              View
-              <ArrowRight className="size-3.5" />
+            <Button asChild variant="brand" size="sm">
+              <Link href={`/marketplace/${listing.id}`}>
+                View
+                <ArrowRight className="size-3.5" />
+              </Link>
             </Button>
           </div>
         </div>

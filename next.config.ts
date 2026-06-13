@@ -23,6 +23,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+  // Hosted marketplace app demos: static exports live under /public/apps/<id>/
+  // as flat .html files. These afterFiles rewrites map clean URLs to the files
+  // so the embedded preview + "Open full app" links navigate without redirects.
+  // (Real asset requests like /apps/brasa/_next/* hit the filesystem first and
+  //  never reach these rules.)
+  async rewrites() {
+    return [
+      { source: "/apps/brasa", destination: "/apps/brasa/index.html" },
+      { source: "/apps/brasa/menu", destination: "/apps/brasa/menu.html" },
+      { source: "/apps/brasa/order", destination: "/apps/brasa/order.html" },
+      { source: "/apps/brasa/reservations", destination: "/apps/brasa/reservations.html" },
+      { source: "/apps/brasa/private-events", destination: "/apps/brasa/private-events.html" },
+    ];
+  },
 };
 
 export default nextConfig;

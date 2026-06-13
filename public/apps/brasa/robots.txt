@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://brasa-miami.example.com/sitemap.xml
